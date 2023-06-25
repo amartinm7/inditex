@@ -1,5 +1,6 @@
 package com.inditex.hiring.acceptance.retrievebyid;
 
+import com.inditex.hiring.OfferFixtures;
 import com.inditex.hiring.acceptance.SpringbootAcceptanceTest;
 import com.inditex.hiring.infrastructure.framework.offer.controller.dto.Offer;
 import org.junit.jupiter.api.Test;
@@ -7,6 +8,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
+import static com.inditex.hiring.OfferFixtures.ANY_OFFER_ID;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class RetrieveOfferIT extends SpringbootAcceptanceTest {
@@ -22,6 +24,4 @@ public class RetrieveOfferIT extends SpringbootAcceptanceTest {
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
         assertThat(response.getBody()).isEqualTo("{}");
     }
-
-    private static final int ANY_OFFER_ID = 234;
 }
