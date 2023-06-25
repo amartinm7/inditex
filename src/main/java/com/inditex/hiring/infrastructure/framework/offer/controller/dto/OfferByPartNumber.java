@@ -1,4 +1,4 @@
-package com.inditex.hiring.controller.dto;
+package com.inditex.hiring.infrastructure.framework.offer.controller.dto;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
