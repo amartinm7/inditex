@@ -60,4 +60,13 @@ public class OfferByPartNumber implements Serializable {
     this.currencyIso = currencyIso;
   }
 
+  @Override
+  public String toString() {
+    return "OfferByPartNumber{" +
+            "startDate='" + startDate + '\'' +
+            ", endDate='" + endDate + '\'' +
+            ", price=" + price +
+            ", currencyIso='" + currencyIso + '\'' +
+            '}';
+  }
 }

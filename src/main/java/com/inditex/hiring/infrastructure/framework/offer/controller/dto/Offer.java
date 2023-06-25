@@ -117,4 +117,18 @@ public class Offer implements Serializable {
     this.currencyIso = currencyIso;
   }
 
+  @Override
+  public String toString() {
+    return "Offer{" +
+            "offerId=" + offerId +
+            ", brandId=" + brandId +
+            ", startDate='" + startDate + '\'' +
+            ", endDate='" + endDate + '\'' +
+            ", priceListId=" + priceListId +
+            ", productPartnumber='" + productPartnumber + '\'' +
+            ", priority=" + priority +
+            ", price=" + price +
+            ", currencyIso='" + currencyIso + '\'' +
+            '}';
+  }
 }
