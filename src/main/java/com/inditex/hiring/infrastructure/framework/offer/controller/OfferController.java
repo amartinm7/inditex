@@ -53,14 +53,6 @@ public class OfferController {
 
   }
 
-  @RequestMapping(value = "/offer/{id}", method = RequestMethod.GET)
-  @ResponseStatus(HttpStatus.OK)
-  public Offer getOfferById(Long offerId) {
-
-    //TODO implement it!.
-    return new Offer();
-  }
-
   @RequestMapping(value = "brand/{brandId}/partnumber/{partnumber}/offer", method = RequestMethod.GET)
   @ResponseStatus(HttpStatus.OK)
   public List<OfferByPartNumber> getOfferByPartNumber(Integer brandId, String partnumber) {
