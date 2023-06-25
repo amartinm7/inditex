@@ -1,6 +1,5 @@
 package com.inditex.hiring.acceptance.retrievebyid;
 
-import com.inditex.hiring.OfferFixtures;
 import com.inditex.hiring.acceptance.SpringbootAcceptanceTest;
 import com.inditex.hiring.infrastructure.framework.offer.controller.dto.Offer;
 import org.junit.jupiter.api.Test;
