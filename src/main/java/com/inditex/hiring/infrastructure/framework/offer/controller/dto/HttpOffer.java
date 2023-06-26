@@ -6,7 +6,7 @@ import java.math.BigDecimal;
 /**
  * Use this POJO for offer service end point responses.
  */
-public record Offer(
+public record HttpOffer(
         Long offerId,
         Integer brandId,
         String startDate,
@@ -17,8 +17,8 @@ public record Offer(
         BigDecimal price,
         String currencyIso
 ) {
-    public static Offer of(Long offerId, Integer brandId, String startDate, String endDate, Long priceListId, String productPartnumber,
-                           Integer priority, BigDecimal price, String currencyIso) {
-        return new Offer(offerId, brandId, startDate, endDate, priceListId, productPartnumber, priority, price, currencyIso);
+    public static HttpOffer of(Long offerId, Integer brandId, String startDate, String endDate, Long priceListId, String productPartnumber,
+                               Integer priority, BigDecimal price, String currencyIso) {
+        return new HttpOffer(offerId, brandId, startDate, endDate, priceListId, productPartnumber, priority, price, currencyIso);
     }
 }

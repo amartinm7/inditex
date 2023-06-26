@@ -2,7 +2,8 @@ package com.inditex.hiring.infrastructure.framework.offer.controller.retrievebyi
 
 import com.inditex.hiring.OfferFixtures;
 import com.inditex.hiring.application.offer.retrievebyid.RetrieveOfferService;
-import com.inditex.hiring.infrastructure.framework.offer.controller.dto.Offer;
+import com.inditex.hiring.domain.offer.exception.OfferNotFound;
+import com.inditex.hiring.infrastructure.framework.offer.controller.dto.HttpOffer;
 import com.inditex.hiring.infrastructure.service.OffsetDateTimeHandler;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -18,16 +19,27 @@ class RetrieveOfferControllerTest {
     @Test
     void should_retrieve_an_offer() {
         //given
-        mock_retrieve_offer_service();
+        mock_service_and_retrieve_a_valid_offer();
         mock_offsetDateTimeHandler();
-        Offer expectedOffer = OfferFixtures.ANY_OFFER;
+        HttpOffer expectedHttpOffer = OfferFixtures.ANY_OFFER_HTTP;
         //when
-        Offer obtainedOffer = retrieveOfferController.getOfferById(OfferFixtures.ANY_OFFER_ID);
+        HttpOffer obtainedHttpOffer = retrieveOfferController.getOfferById(OfferFixtures.ANY_OFFER_ID);
         //then
-        assertThat(obtainedOffer).isEqualTo(expectedOffer);
+        assertThat(obtainedHttpOffer).isEqualTo(expectedHttpOffer);
     }
 
-    private void mock_retrieve_offer_service() {
+    @Test
+    void should_retrieve_an_empty_offer() {
+        //given
+        mock_service_and_retrieve_an_empty_offer();
+        mock_offsetDateTimeHandler();
+        //when then
+        org.junit.jupiter.api.Assertions.assertThrows(OfferNotFound.class, () -> {
+            retrieveOfferController.getOfferById(OfferFixtures.ANY_OFFER_ID);
+        });
+    }
+
+    private void mock_service_and_retrieve_a_valid_offer() {
         Mockito.when(retrieveOfferservice.execute(OfferFixtures.ANY_RETRIEVE_OFFER_REQUEST))
                 .thenReturn(OfferFixtures.ANY_RETRIEVE_OFFER_RESPONSE);
     }
@@ -35,5 +47,10 @@ class RetrieveOfferControllerTest {
     private void mock_offsetDateTimeHandler() {
         Mockito.when(offsetDateTimeHandler.toStringUTC(OfferFixtures.ANY_START_DATE))
                 .thenReturn(OfferFixtures.ANY_START_DATE_STR);
+    }
+
+    private void mock_service_and_retrieve_an_empty_offer() {
+        Mockito.when(retrieveOfferservice.execute(OfferFixtures.ANY_RETRIEVE_OFFER_REQUEST))
+                .thenReturn(OfferFixtures.ANY_RETRIEVE_OFFER_RESPONSE_EMPTY);
     }
 }

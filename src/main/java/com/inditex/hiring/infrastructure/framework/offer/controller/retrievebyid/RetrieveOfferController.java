@@ -3,9 +3,13 @@ package com.inditex.hiring.infrastructure.framework.offer.controller.retrievebyi
 import com.inditex.hiring.application.offer.retrievebyid.RetrieveOfferService;
 import com.inditex.hiring.application.offer.retrievebyid.RetrieveOfferServiceRequest;
 import com.inditex.hiring.application.offer.retrievebyid.RetrieveOfferServiceResponse;
-import com.inditex.hiring.infrastructure.framework.offer.controller.dto.Offer;
+import com.inditex.hiring.domain.offer.OfferAggregate;
+import com.inditex.hiring.domain.offer.OfferEmtpy;
+import com.inditex.hiring.domain.offer.exception.OfferNotFound;
+import com.inditex.hiring.infrastructure.framework.offer.controller.dto.HttpOffer;
 import com.inditex.hiring.infrastructure.service.OffsetDateTimeHandler;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -26,24 +30,27 @@ public class RetrieveOfferController {
         this.offsetDateTimeHandler = offsetDateTimeHandler;
     }
 
-    @RequestMapping(value = "/offer/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/offer/{offerId}", method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
-    public Offer getOfferById(Long offerId) {
+    public HttpOffer getOfferById(@PathVariable Long offerId) {
         RetrieveOfferServiceResponse response = retrieveOfferservice.execute(new RetrieveOfferServiceRequest(offerId));
-        return mapToHttpResponse(response);
+        if (response.offer() instanceof OfferEmtpy offerEmtpy) {
+            throw new OfferNotFound(offerId);
+        }
+        return mapToHttpResponse((OfferAggregate) response.offer());
     }
 
-    private Offer mapToHttpResponse(RetrieveOfferServiceResponse response) {
-        return new Offer(
-                response.offer().offerId().value(),
-                response.offer().brandId().value(),
-                offsetDateTimeHandler.toStringUTC(response.offer().startDate().value()),
-                offsetDateTimeHandler.toStringUTC(response.offer().endDate().value()),
-                response.offer().priceListId().value(),
-                response.offer().productPartnumber().value(),
-                response.offer().priority().value(),
-                response.offer().price().value(),
-                response.offer().currencyIso().value()
+    private HttpOffer mapToHttpResponse(OfferAggregate offerAggregate) {
+        return new HttpOffer(
+                offerAggregate.offerId().value(),
+                offerAggregate.brandId().value(),
+                offsetDateTimeHandler.toStringUTC(offerAggregate.startDate().value()),
+                offsetDateTimeHandler.toStringUTC(offerAggregate.endDate().value()),
+                offerAggregate.priceListId().value(),
+                offerAggregate.productPartnumber().value(),
+                offerAggregate.priority().value(),
+                offerAggregate.price().value(),
+                offerAggregate.currencyIso().value()
         );
     }
 

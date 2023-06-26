@@ -1,6 +1,6 @@
 package com.inditex.hiring.infrastructure.framework.offer.controller;
 
-import com.inditex.hiring.infrastructure.framework.offer.controller.dto.Offer;
+import com.inditex.hiring.infrastructure.framework.offer.controller.dto.HttpOffer;
 import com.inditex.hiring.infrastructure.framework.offer.controller.dto.OfferByPartNumber;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +22,7 @@ public class OfferController {
 
   @RequestMapping(value = "/offer", method = RequestMethod.POST, consumes = "application/json")
   @ResponseStatus(HttpStatus.CREATED)
-  public void createNewOffer(@RequestBody @Valid Offer offer) {
+  public void createNewOffer(@RequestBody @Valid HttpOffer httpOffer) {
 
     //TODO implement it!.
 
@@ -46,7 +46,7 @@ public class OfferController {
 
   @RequestMapping(value = "/offer", method = RequestMethod.GET)
   @ResponseStatus(HttpStatus.OK)
-  public List<Offer> getAllOffers() {
+  public List<HttpOffer> getAllOffers() {
 
     //TODO implement it!.
     return new ArrayList<>();

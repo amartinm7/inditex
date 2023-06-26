@@ -5,12 +5,15 @@ import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.Date;
+import java.util.TimeZone;
 
 public class OffsetDateTimeHandler {
 
     private static java.time.format.DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'");
 
     public OffsetDateTimeHandler() {
+        //
+        TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
     }
 
     public OffsetDateTime now() {
