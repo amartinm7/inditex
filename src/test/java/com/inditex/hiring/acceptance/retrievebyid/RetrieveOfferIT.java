@@ -7,7 +7,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
-import static com.inditex.hiring.OfferFixtures.ANY_OFFER_HTTP;
+import static com.inditex.hiring.OfferFixtures.ANY_HTTP_OFFER;
 import static com.inditex.hiring.OfferFixtures.ANY_OFFER_ID;
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -22,6 +22,6 @@ public class RetrieveOfferIT extends SpringbootAcceptanceTest {
                 HttpOffer.class
         );
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
-        assertThat(response.getBody()).isEqualTo(ANY_OFFER_HTTP);
+        assertThat(response.getBody()).isEqualTo(ANY_HTTP_OFFER);
     }
 }

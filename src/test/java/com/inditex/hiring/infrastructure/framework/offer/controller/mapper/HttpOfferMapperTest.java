@@ -8,11 +8,11 @@ import org.mockito.Mockito;
 import java.util.List;
 
 import static com.inditex.hiring.OfferFixtures.ANY_ALL_OFFERS;
-import static com.inditex.hiring.OfferFixtures.ANY_ALL_OFFERS_HTTP;
+import static com.inditex.hiring.OfferFixtures.ANY_ALL_HTTP_OFFERS;
 import static com.inditex.hiring.OfferFixtures.ANY_END_DATE;
 import static com.inditex.hiring.OfferFixtures.ANY_END_DATE_STR;
 import static com.inditex.hiring.OfferFixtures.ANY_OFFER_AGGREGATE;
-import static com.inditex.hiring.OfferFixtures.ANY_OFFER_HTTP;
+import static com.inditex.hiring.OfferFixtures.ANY_HTTP_OFFER;
 import static com.inditex.hiring.OfferFixtures.ANY_START_DATE;
 import static com.inditex.hiring.OfferFixtures.ANY_START_DATE_STR;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -32,7 +32,7 @@ class HttpOfferMapperTest {
         //when
         HttpOffer response = httpOfferMapper.mapToHttpResponse(ANY_OFFER_AGGREGATE);
         //then
-        assertThat(response).isEqualTo(ANY_OFFER_HTTP);
+        assertThat(response).isEqualTo(ANY_HTTP_OFFER);
         verify(offsetDateTimeHandler, times(1)).toStringUTC(ANY_START_DATE);
         verify(offsetDateTimeHandler, times(1)).toStringUTC(ANY_END_DATE);
     }
@@ -44,7 +44,7 @@ class HttpOfferMapperTest {
         //when
         List<HttpOffer> response = httpOfferMapper.mapToHttpResponse(ANY_ALL_OFFERS);
         //then
-        assertThat(response).isEqualTo(ANY_ALL_OFFERS_HTTP);
+        assertThat(response).isEqualTo(ANY_ALL_HTTP_OFFERS);
         verify(offsetDateTimeHandler, times(1)).toStringUTC(ANY_START_DATE);
         verify(offsetDateTimeHandler, times(1)).toStringUTC(ANY_END_DATE);
     }

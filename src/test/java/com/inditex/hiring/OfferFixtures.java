@@ -48,7 +48,7 @@ public class OfferFixtures {
 
     public static String ANY_CURRENCY_ISO = "EUR";
 
-    public static final HttpOffer ANY_OFFER_HTTP = HttpOffer.of(
+    public static final HttpOffer ANY_HTTP_OFFER = HttpOffer.of(
             ANY_OFFER_ID,
             ANY_BRAND_ID,
             ANY_START_DATE_STR,
@@ -60,7 +60,7 @@ public class OfferFixtures {
             ANY_CURRENCY_ISO
     );
 
-    public static final List<HttpOffer> ANY_ALL_OFFERS_HTTP = List.of(ANY_OFFER_HTTP);
+    public static final List<HttpOffer> ANY_ALL_HTTP_OFFERS = List.of(ANY_HTTP_OFFER);
 
     public static OfferId OFFER_ID = new OfferId(ANY_OFFER_ID);
     public static BrandId BRAND_ID = new BrandId(ANY_BRAND_ID);
@@ -115,4 +115,7 @@ public class OfferFixtures {
             ANY_START_DATE,
             ANY_START_DATE
     );
+
+    public static final List<JpaOffer> ANY_ALL_JPA_OFFERS = List.of(ANY_JPA_OFFER);
+
 }

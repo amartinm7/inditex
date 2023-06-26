@@ -30,7 +30,6 @@ public class RetrieveAllOffersController {
     @ResponseStatus(HttpStatus.OK)
     public List<HttpOffer> getAllOffers() {
         RetrieveAllOffersServiceResponse response = retrieveAllOffersService.execute();
-        //TODO implement it!.
         return httpOfferMapper.mapToHttpResponse(response.offerList());
     }
 }

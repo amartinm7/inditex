@@ -9,7 +9,7 @@ import org.mockito.Mockito;
 import java.util.List;
 
 import static com.inditex.hiring.OfferFixtures.ANY_ALL_OFFERS;
-import static com.inditex.hiring.OfferFixtures.ANY_ALL_OFFERS_HTTP;
+import static com.inditex.hiring.OfferFixtures.ANY_ALL_HTTP_OFFERS;
 import static com.inditex.hiring.OfferFixtures.ANY_RETRIEVE_ALL_OFFERS_RESPONSE;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.verify;
@@ -39,6 +39,6 @@ class RetrieveAllOffersControllerTest {
 
     private void mock_map_to_httpOffer_list() {
         Mockito.when(httpOfferMapper.mapToHttpResponse(ANY_ALL_OFFERS))
-                .thenReturn(ANY_ALL_OFFERS_HTTP);
+                .thenReturn(ANY_ALL_HTTP_OFFERS);
     }
 }

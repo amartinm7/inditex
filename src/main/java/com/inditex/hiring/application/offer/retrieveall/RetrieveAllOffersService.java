@@ -1,13 +1,16 @@
 package com.inditex.hiring.application.offer.retrieveall;
 
-import com.inditex.hiring.domain.offer.OfferAggregate;
+import com.inditex.hiring.domain.offer.OfferRepository;
 
 public class RetrieveAllOffersService {
-    public RetrieveAllOffersService() {
+
+    private final OfferRepository offerRepository;
+
+    public RetrieveAllOffersService(OfferRepository offerRepository) {
+        this.offerRepository = offerRepository;
     }
 
     public RetrieveAllOffersServiceResponse execute() {
-        //TODO
-        return null;
+        return new RetrieveAllOffersServiceResponse(offerRepository.findAll());
     }
 }

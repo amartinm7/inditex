@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 import static com.inditex.hiring.OfferFixtures.ANY_OFFER_AGGREGATE;
-import static com.inditex.hiring.OfferFixtures.ANY_OFFER_HTTP;
+import static com.inditex.hiring.OfferFixtures.ANY_HTTP_OFFER;
 import static com.inditex.hiring.OfferFixtures.ANY_OFFER_ID;
 import static com.inditex.hiring.OfferFixtures.ANY_RETRIEVE_OFFER_REQUEST;
 import static com.inditex.hiring.OfferFixtures.ANY_RETRIEVE_OFFER_RESPONSE;
@@ -30,7 +30,7 @@ class RetrieveOfferControllerTest {
         //given
         mock_service_and_retrieve_a_valid_offer();
         mock_map_to_httpOffer();
-        HttpOffer expectedHttpOffer = ANY_OFFER_HTTP;
+        HttpOffer expectedHttpOffer = ANY_HTTP_OFFER;
         //when
         HttpOffer obtainedHttpOffer = retrieveOfferController.getOfferById(ANY_OFFER_ID);
         //then
@@ -58,7 +58,7 @@ class RetrieveOfferControllerTest {
 
     private void mock_map_to_httpOffer() {
         Mockito.when(httpOfferMapper.mapToHttpResponse(ANY_OFFER_AGGREGATE))
-                .thenReturn(ANY_OFFER_HTTP);
+                .thenReturn(ANY_HTTP_OFFER);
     }
 
     private void mock_service_and_retrieve_an_empty_offer() {
