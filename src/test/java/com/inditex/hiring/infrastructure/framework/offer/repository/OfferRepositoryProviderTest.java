@@ -3,7 +3,6 @@ package com.inditex.hiring.infrastructure.framework.offer.repository;
 import com.inditex.hiring.domain.offer.Offer;
 import com.inditex.hiring.domain.offer.OfferAggregate;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 
 import java.util.List;
 import java.util.Optional;
@@ -17,9 +16,11 @@ import static com.inditex.hiring.OfferFixtures.ANY_OFFER_EMPTY;
 import static com.inditex.hiring.OfferFixtures.ANY_OFFER_ID;
 import static com.inditex.hiring.OfferFixtures.ANY_PART_NUMBER;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 class OfferRepositoryProviderTest {
 
@@ -82,38 +83,46 @@ class OfferRepositoryProviderTest {
         verify(jpaOfferMapper, times(1)).toOffer(ANY_ALL_JPA_OFFERS);
     }
 
+    @Test
+    public void should_delete_an_offer_given_an_offer_id() {
+        //Given
+        mock_repository_delete_offer_by_id();
+        //When
+        offerRepositoryProvider.deleteById(ANY_OFFER_ID);
+        //Then
+        verify(jpaOfferRepositoryClient, times(1)).deleteById(ANY_OFFER_ID);
+    }
+
     private void mock_repository_find_by_id() {
-        Mockito.when(jpaOfferRepositoryClient.findById(ANY_OFFER_ID))
-                .thenReturn(Optional.of(ANY_JPA_OFFER));
+        when(jpaOfferRepositoryClient.findById(ANY_OFFER_ID)).thenReturn(Optional.of(ANY_JPA_OFFER));
     }
 
     private void mock_repository_find_all() {
-        Mockito.when(jpaOfferRepositoryClient.findAll())
-                .thenReturn(ANY_ALL_JPA_OFFERS);
+        when(jpaOfferRepositoryClient.findAll()).thenReturn(ANY_ALL_JPA_OFFERS);
     }
 
     private void mock_repository_to_unknown_id() {
-        Mockito.when(jpaOfferRepositoryClient.findById(ANY_OFFER_ID))
-                .thenReturn(Optional.empty());
+        when(jpaOfferRepositoryClient.findById(ANY_OFFER_ID)).thenReturn(Optional.empty());
     }
 
     private void mock_to_offer_mapper() {
-        Mockito.when(jpaOfferMapper.toOffer(Optional.of(ANY_JPA_OFFER)))
-                .thenReturn(ANY_OFFER_AGGREGATE);
+        when(jpaOfferMapper.toOffer(Optional.of(ANY_JPA_OFFER))).thenReturn(ANY_OFFER_AGGREGATE);
     }
 
     private void mock_to_empty_offer_mapper() {
-        Mockito.when(jpaOfferMapper.toOffer(Optional.empty()))
-                .thenReturn(ANY_OFFER_EMPTY);
+        when(jpaOfferMapper.toOffer(Optional.empty())).thenReturn(ANY_OFFER_EMPTY);
     }
 
     private void mock_to_offer_list_mapper() {
-        Mockito.when(jpaOfferMapper.toOffer(ANY_ALL_JPA_OFFERS))
-                .thenReturn(ANY_ALL_OFFERS);
+        when(jpaOfferMapper.toOffer(ANY_ALL_JPA_OFFERS)).thenReturn(ANY_ALL_OFFERS);
     }
 
     private void mock_repository_find_by_brand_id_and_part_number() {
-        Mockito.when(jpaOfferRepositoryClient.findByBrandIdPartNumber(ANY_BRAND_ID, ANY_PART_NUMBER))
+        when(jpaOfferRepositoryClient.findByBrandIdPartNumber(ANY_BRAND_ID, ANY_PART_NUMBER))
                 .thenReturn(ANY_ALL_JPA_OFFERS);
+    }
+
+    private void mock_repository_delete_offer_by_id() {
+        doNothing().when(jpaOfferRepositoryClient).deleteById(ANY_OFFER_ID);
     }
 }

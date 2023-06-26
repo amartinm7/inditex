@@ -35,8 +35,8 @@ public class OfferConfig {
     }
 
     @Bean
-    public DeleteOfferService deleteOfferService() {
-        return new DeleteOfferService();
+    public DeleteOfferService deleteOfferService(OfferRepository offerRepository) {
+        return new DeleteOfferService(offerRepository);
     }
 
     @Bean

@@ -32,6 +32,8 @@ public class OfferFixtures {
 
     public static Long ANY_OFFER_ID = 1L;
 
+    public static Long NON_EXISTING_OFFER_ID = 999999L;
+
     public static Integer ANY_BRAND_ID = 1;
 
     public static String ANY_START_DATE_STR = "2020-06-14T00:00:00Z";

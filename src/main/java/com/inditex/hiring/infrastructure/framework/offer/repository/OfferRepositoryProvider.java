@@ -31,4 +31,9 @@ public class OfferRepositoryProvider implements OfferRepository {
     public List<OfferAggregate> findByBrandIdPartNumber(Integer brandId, String partNumber) {
         return jpaOfferMapper.toOffer(jpaOfferRepositoryClient.findByBrandIdPartNumber(brandId, partNumber));
     }
+
+    @Override
+    public void deleteById(Long offerId) {
+        jpaOfferRepositoryClient.deleteById(offerId);
+    }
 }

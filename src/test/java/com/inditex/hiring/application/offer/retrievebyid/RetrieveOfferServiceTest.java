@@ -11,10 +11,13 @@ import static com.inditex.hiring.OfferFixtures.ANY_RETRIEVE_OFFER_RESPONSE;
 import static com.inditex.hiring.OfferFixtures.ANY_RETRIEVE_OFFER_RESPONSE_EMPTY;
 import static org.assertj.core.api.Assertions.assertThat;
 
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+
 class RetrieveOfferServiceTest {
 
-    private OfferRepository offerRepository = Mockito.mock(OfferRepositoryProvider.class);
-    private RetrieveOfferService retrieveOfferService = new RetrieveOfferService(offerRepository);
+    private final OfferRepository offerRepository = Mockito.mock(OfferRepositoryProvider.class);
+    private final RetrieveOfferService retrieveOfferService = new RetrieveOfferService(offerRepository);
 
     @Test
     public void should_return_a_valid_offer_given_any_id() {
@@ -25,6 +28,7 @@ class RetrieveOfferServiceTest {
         RetrieveOfferServiceResponse response = retrieveOfferService.execute(ANY_RETRIEVE_OFFER_REQUEST);
         //then
         assertThat(response).isEqualTo(expectedResponse);
+        verify(offerRepository,times(1)).findById(OfferFixtures.ANY_OFFER_ID);
     }
 
     @Test
@@ -36,7 +40,7 @@ class RetrieveOfferServiceTest {
         RetrieveOfferServiceResponse response = retrieveOfferService.execute(ANY_RETRIEVE_OFFER_REQUEST);
         //then
         assertThat(response).isEqualTo(expectedResponse);
-
+        verify(offerRepository,times(1)).findById(OfferFixtures.ANY_OFFER_ID);
     }
 
     private void mock_repository() {
