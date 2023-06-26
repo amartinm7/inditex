@@ -26,7 +26,7 @@ import java.util.List;
 
 public class OfferFixtures {
 
-    public static Long ANY_OFFER_ID = 234L;
+    public static Long ANY_OFFER_ID = 1L;
 
     public static Integer ANY_BRAND_ID = 1;
 
