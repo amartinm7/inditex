@@ -16,7 +16,7 @@ public class RetrieveOfferAcceptanceTest extends SpringbootAcceptanceTest {
     @Test
     void should_retrieve_an_offer() {
         ResponseEntity<HttpOffer> response = restTemplate.exchange(
-                "http://localhost:%d//offer/%s".formatted(port, ANY_OFFER_ID),
+                "http://localhost:%d/offer/%s".formatted(port, ANY_OFFER_ID),
                 HttpMethod.GET,
                 defaultHttpEntity,
                 HttpOffer.class
