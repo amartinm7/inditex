@@ -4,7 +4,7 @@ import com.inditex.hiring.domain.offer.OfferAggregate;
 
 import java.util.List;
 
-public record RetrieveOfferByPartitionServiceResponse(
+public record RetrieveOfferByPartNumberServiceResponse(
         List<OfferAggregate> offerList
 ) {
 }

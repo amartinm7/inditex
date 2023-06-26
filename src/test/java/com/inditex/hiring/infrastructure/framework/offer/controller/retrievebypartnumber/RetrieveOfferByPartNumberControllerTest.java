@@ -12,8 +12,8 @@ import static com.inditex.hiring.OfferFixtures.ANY_ALL_OFFERS;
 import static com.inditex.hiring.OfferFixtures.ANY_BRAND_ID;
 import static com.inditex.hiring.OfferFixtures.ANY_HTTP_OFFER_BY_PART_NUMBER_LIST;
 import static com.inditex.hiring.OfferFixtures.ANY_PRODUCT_PART_NUMBER;
-import static com.inditex.hiring.OfferFixtures.ANY_RETRIEVE_OFFER_BY_PARTITION_REQUEST;
-import static com.inditex.hiring.OfferFixtures.ANY_RETRIEVE_OFFER_BY_PARTITION_RESPONSE;
+import static com.inditex.hiring.OfferFixtures.ANY_RETRIEVE_OFFER_BY_PART_NUMB_REQUEST;
+import static com.inditex.hiring.OfferFixtures.ANY_RETRIEVE_OFFER_BY_PART_NUMB_RESPONSE;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
@@ -40,12 +40,12 @@ class RetrieveOfferByPartNumberControllerTest {
         //Then
         assertThat(response).isEqualTo(ANY_HTTP_OFFER_BY_PART_NUMBER_LIST);
         verify(retrieveOfferByPartNumberService, times(1))
-                .execute(ANY_RETRIEVE_OFFER_BY_PARTITION_REQUEST);
+                .execute(ANY_RETRIEVE_OFFER_BY_PART_NUMB_REQUEST);
     }
 
     private void mock_service_get_offer_list_by_brand_and_partition() {
-        Mockito.when(retrieveOfferByPartNumberService.execute(ANY_RETRIEVE_OFFER_BY_PARTITION_REQUEST))
-                .thenReturn(ANY_RETRIEVE_OFFER_BY_PARTITION_RESPONSE);
+        Mockito.when(retrieveOfferByPartNumberService.execute(ANY_RETRIEVE_OFFER_BY_PART_NUMB_REQUEST))
+                .thenReturn(ANY_RETRIEVE_OFFER_BY_PART_NUMB_RESPONSE);
     }
 
     private void mock_map_to_httpOfferPartNumber_list() {

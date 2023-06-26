@@ -3,8 +3,8 @@ package com.inditex.hiring;
 import com.inditex.hiring.application.offer.retrieveall.RetrieveAllOffersServiceResponse;
 import com.inditex.hiring.application.offer.retrievebyid.RetrieveOfferServiceRequest;
 import com.inditex.hiring.application.offer.retrievebyid.RetrieveOfferServiceResponse;
-import com.inditex.hiring.application.offer.retrievebypartnumber.RetrieveOfferByPartitionServiceRequest;
-import com.inditex.hiring.application.offer.retrievebypartnumber.RetrieveOfferByPartitionServiceResponse;
+import com.inditex.hiring.application.offer.retrievebypartnumber.RetrieveOfferByPartNumberServiceRequest;
+import com.inditex.hiring.application.offer.retrievebypartnumber.RetrieveOfferByPartNumberServiceResponse;
 import com.inditex.hiring.domain.offer.BrandId;
 import com.inditex.hiring.domain.offer.CreatedAt;
 import com.inditex.hiring.domain.offer.CurrencyIso;
@@ -123,9 +123,9 @@ public class OfferFixtures {
             HttpOfferByPartNumber.of(ANY_START_DATE_STR, ANY_END_DATE_STR, ANY_PRICE, ANY_CURRENCY_ISO);
     public static final List<HttpOfferByPartNumber> ANY_HTTP_OFFER_BY_PART_NUMBER_LIST = List.of(ANY_OFFER_BY_PART_NUMBER);
 
-    public static final RetrieveOfferByPartitionServiceRequest ANY_RETRIEVE_OFFER_BY_PARTITION_REQUEST =
-            new RetrieveOfferByPartitionServiceRequest(ANY_BRAND_ID, ANY_PRODUCT_PART_NUMBER);
+    public static final RetrieveOfferByPartNumberServiceRequest ANY_RETRIEVE_OFFER_BY_PART_NUMB_REQUEST =
+            new RetrieveOfferByPartNumberServiceRequest(ANY_BRAND_ID, ANY_PRODUCT_PART_NUMBER);
 
-    public static final RetrieveOfferByPartitionServiceResponse ANY_RETRIEVE_OFFER_BY_PARTITION_RESPONSE =
-            new RetrieveOfferByPartitionServiceResponse(ANY_ALL_OFFERS);
+    public static final RetrieveOfferByPartNumberServiceResponse ANY_RETRIEVE_OFFER_BY_PART_NUMB_RESPONSE =
+            new RetrieveOfferByPartNumberServiceResponse(ANY_ALL_OFFERS);
 }

@@ -27,8 +27,10 @@ public class OfferConfig {
     }
 
     @Bean
-    public RetrieveOfferByPartNumberService retrieveOfferByPartitionService() {
-        return new RetrieveOfferByPartNumberService();
+    public RetrieveOfferByPartNumberService retrieveOfferByPartitionService(
+            OfferRepository offerRepository
+    ) {
+        return new RetrieveOfferByPartNumberService(offerRepository);
     }
 
     @Bean

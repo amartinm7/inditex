@@ -1,11 +1,10 @@
 package com.inditex.hiring.infrastructure.framework.offer.controller.retrievebypartnumber;
 
 import com.inditex.hiring.application.offer.retrievebypartnumber.RetrieveOfferByPartNumberService;
-import com.inditex.hiring.application.offer.retrievebypartnumber.RetrieveOfferByPartitionServiceRequest;
-import com.inditex.hiring.application.offer.retrievebypartnumber.RetrieveOfferByPartitionServiceResponse;
+import com.inditex.hiring.application.offer.retrievebypartnumber.RetrieveOfferByPartNumberServiceRequest;
+import com.inditex.hiring.application.offer.retrievebypartnumber.RetrieveOfferByPartNumberServiceResponse;
 import com.inditex.hiring.infrastructure.framework.offer.controller.dto.HttpOfferByPartNumber;
 import com.inditex.hiring.infrastructure.framework.offer.controller.mapper.HttpOfferByPartNumberMapper;
-import com.inditex.hiring.infrastructure.framework.offer.controller.mapper.HttpOfferMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -37,9 +35,9 @@ public class RetrieveOfferByPartNumberController {
             @PathVariable Integer brandId,
             @PathVariable String partNumber
     ) {
-        RetrieveOfferByPartitionServiceResponse response =
+        RetrieveOfferByPartNumberServiceResponse response =
                 retrieveOfferByPartNumberService.execute(
-                        new RetrieveOfferByPartitionServiceRequest(brandId, partNumber)
+                        new RetrieveOfferByPartNumberServiceRequest(brandId, partNumber)
                 );
         return httpOfferByPartNumberMapper.mapToHttpResponse(response.offerList());
     }

@@ -9,4 +9,6 @@ public interface OfferRepositoryRead {
     Offer findById(Long offerId);
 
     List<OfferAggregate> findAll();
+
+    List<OfferAggregate> findByBrandIdPartNumber(Integer anyBrandId, String anyProductPartNumber);
 }
