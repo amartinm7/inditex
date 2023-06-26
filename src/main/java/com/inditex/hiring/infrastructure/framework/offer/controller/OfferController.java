@@ -1,9 +1,6 @@
 package com.inditex.hiring.infrastructure.framework.offer.controller;
 
 import com.inditex.hiring.infrastructure.framework.offer.controller.dto.HttpOffer;
-import com.inditex.hiring.infrastructure.framework.offer.controller.dto.OfferByPartNumber;
-import java.util.ArrayList;
-import java.util.List;
 
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -44,11 +41,5 @@ public class OfferController {
 
   }
 
-  @RequestMapping(value = "brand/{brandId}/partnumber/{partnumber}/offer", method = RequestMethod.GET)
-  @ResponseStatus(HttpStatus.OK)
-  public List<OfferByPartNumber> getOfferByPartNumber(Integer brandId, String partnumber) {
 
-    //TODO implement it!.
-    return new ArrayList<>();
-  }
 }

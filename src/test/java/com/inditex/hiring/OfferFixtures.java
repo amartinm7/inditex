@@ -17,6 +17,7 @@ import com.inditex.hiring.domain.offer.Priority;
 import com.inditex.hiring.domain.offer.ProductPartNumber;
 import com.inditex.hiring.domain.offer.StartDate;
 import com.inditex.hiring.infrastructure.framework.offer.controller.dto.HttpOffer;
+import com.inditex.hiring.infrastructure.framework.offer.controller.dto.HttpOfferByPartNumber;
 import com.inditex.hiring.infrastructure.framework.offer.repository.JpaOffer;
 import com.inditex.hiring.infrastructure.service.OffsetDateTimeHandler;
 
@@ -115,7 +116,8 @@ public class OfferFixtures {
             ANY_START_DATE,
             ANY_START_DATE
     );
-
     public static final List<JpaOffer> ANY_ALL_JPA_OFFERS = List.of(ANY_JPA_OFFER);
-
+    public static final HttpOfferByPartNumber ANY_OFFER_BY_PART_NUMBER =
+            HttpOfferByPartNumber.of(ANY_START_DATE_STR, ANY_END_DATE_STR, ANY_PRICE, ANY_CURRENCY_ISO);
+    public static final List<HttpOfferByPartNumber> ANY_OFFER_BY_PART_NUMBER_LIST = List.of(ANY_OFFER_BY_PART_NUMBER);
 }
