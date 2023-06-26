@@ -1,5 +1,6 @@
 package com.inditex.hiring;
 
+import com.inditex.hiring.application.offer.retrieveall.RetrieveAllOffersServiceResponse;
 import com.inditex.hiring.application.offer.retrievebyid.RetrieveOfferServiceRequest;
 import com.inditex.hiring.application.offer.retrievebyid.RetrieveOfferServiceResponse;
 import com.inditex.hiring.domain.offer.BrandId;
@@ -21,6 +22,8 @@ import com.inditex.hiring.infrastructure.service.OffsetDateTimeHandler;
 
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 public class OfferFixtures {
 
@@ -86,6 +89,8 @@ public class OfferFixtures {
             MODIFIED_AT
     );
 
+    public static final List<OfferAggregate> ANY_ALL_OFFERS = List.of(ANY_OFFER_AGGREGATE);
+
     public static final OfferEmtpy ANY_OFFER_EMPTY = OfferEmtpy.of();
 
     public static final RetrieveOfferServiceRequest ANY_RETRIEVE_OFFER_REQUEST = new RetrieveOfferServiceRequest(ANY_OFFER_ID);
@@ -93,6 +98,8 @@ public class OfferFixtures {
     public static final RetrieveOfferServiceResponse ANY_RETRIEVE_OFFER_RESPONSE = new RetrieveOfferServiceResponse(ANY_OFFER_AGGREGATE);
 
     public static final RetrieveOfferServiceResponse ANY_RETRIEVE_OFFER_RESPONSE_EMPTY = new RetrieveOfferServiceResponse(OfferEmtpy.of());
+
+    public static final RetrieveAllOffersServiceResponse ANY_RETRIEVE_ALL_OFFERS_RESPONSE = new RetrieveAllOffersServiceResponse(ANY_ALL_OFFERS);
 
     public static final JpaOffer ANY_JPA_OFFER = JpaOffer.of(
             ANY_OFFER_ID,

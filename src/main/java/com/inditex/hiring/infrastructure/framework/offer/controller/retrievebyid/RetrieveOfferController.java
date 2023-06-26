@@ -7,7 +7,7 @@ import com.inditex.hiring.domain.offer.OfferAggregate;
 import com.inditex.hiring.domain.offer.OfferEmtpy;
 import com.inditex.hiring.domain.offer.exception.OfferNotFound;
 import com.inditex.hiring.infrastructure.framework.offer.controller.dto.HttpOffer;
-import com.inditex.hiring.infrastructure.service.OffsetDateTimeHandler;
+import com.inditex.hiring.infrastructure.framework.offer.controller.mapper.HttpOfferMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,16 +18,16 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class RetrieveOfferController {
 
-    private final RetrieveOfferService retrieveOfferservice;
+    private final HttpOfferMapper httpOfferMapper;
 
-    private final OffsetDateTimeHandler offsetDateTimeHandler;
+    private final RetrieveOfferService retrieveOfferservice;
 
     public RetrieveOfferController(
             RetrieveOfferService retrieveOfferservice,
-            OffsetDateTimeHandler offsetDateTimeHandler
+            HttpOfferMapper httpOfferMapper
     ) {
         this.retrieveOfferservice = retrieveOfferservice;
-        this.offsetDateTimeHandler = offsetDateTimeHandler;
+        this.httpOfferMapper = httpOfferMapper;
     }
 
     @RequestMapping(value = "/offer/{offerId}", method = RequestMethod.GET)
@@ -37,21 +37,6 @@ public class RetrieveOfferController {
         if (response.offer() instanceof OfferEmtpy offerEmtpy) {
             throw new OfferNotFound(offerId);
         }
-        return mapToHttpResponse((OfferAggregate) response.offer());
+        return httpOfferMapper.mapToHttpResponse((OfferAggregate) response.offer());
     }
-
-    private HttpOffer mapToHttpResponse(OfferAggregate offerAggregate) {
-        return new HttpOffer(
-                offerAggregate.offerId().value(),
-                offerAggregate.brandId().value(),
-                offsetDateTimeHandler.toStringUTC(offerAggregate.startDate().value()),
-                offsetDateTimeHandler.toStringUTC(offerAggregate.endDate().value()),
-                offerAggregate.priceListId().value(),
-                offerAggregate.productPartnumber().value(),
-                offerAggregate.priority().value(),
-                offerAggregate.price().value(),
-                offerAggregate.currencyIso().value()
-        );
-    }
-
 }
