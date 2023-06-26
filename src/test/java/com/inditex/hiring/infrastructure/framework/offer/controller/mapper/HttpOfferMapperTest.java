@@ -1,10 +1,8 @@
 package com.inditex.hiring.infrastructure.framework.offer.controller.mapper;
 
-import com.inditex.hiring.OfferFixtures;
 import com.inditex.hiring.infrastructure.framework.offer.controller.dto.HttpOffer;
 import com.inditex.hiring.infrastructure.service.OffsetDateTimeHandler;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
 import org.mockito.Mockito;
 
 import static com.inditex.hiring.OfferFixtures.ANY_END_DATE;
