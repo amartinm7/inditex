@@ -6,6 +6,7 @@ import com.inditex.hiring.infrastructure.framework.offer.controller.dto.HttpOffe
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.Resource;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +20,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class RetrieveOfferByPartNumberAcceptanceTest extends SpringbootAcceptanceTest {
 
     @Value("classpath:/fixtures/offer/retrieve_an_offer_list_by_brand_and_part_number.json")
-    private org.springframework.core.io.Resource offerListResource;
+    private Resource offerListResource;
 
     @Autowired
     private ObjectMapper objectMapper;
@@ -27,7 +28,8 @@ public class RetrieveOfferByPartNumberAcceptanceTest extends SpringbootAcceptanc
     @Test
     void should_retrieve_an_offer_list_by_brand_and_part_number() throws IOException {
         //Given
-        HttpOfferByPartNumber[] expected = objectMapper.readValue(offerListResource.getInputStream(), HttpOfferByPartNumber[].class);
+        HttpOfferByPartNumber[] expected
+                = objectMapper.readValue(offerListResource.getInputStream(), HttpOfferByPartNumber[].class);
         //When
         ResponseEntity<HttpOfferByPartNumber[]> response = restTemplate.exchange(
                 "http://localhost:%d/brand/%d/partnumber/%s/offer"
