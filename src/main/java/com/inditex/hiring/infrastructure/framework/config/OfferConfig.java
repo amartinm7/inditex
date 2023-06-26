@@ -2,7 +2,9 @@ package com.inditex.hiring.infrastructure.framework.config;
 
 import com.inditex.hiring.application.offer.retrieveall.RetrieveAllOffersService;
 import com.inditex.hiring.application.offer.retrievebyid.RetrieveOfferService;
+import com.inditex.hiring.application.offer.retrievebypartnumber.RetrieveOfferByPartNumberService;
 import com.inditex.hiring.domain.offer.port.OfferRepository;
+import com.inditex.hiring.infrastructure.framework.offer.controller.mapper.HttpOfferByPartNumberMapper;
 import com.inditex.hiring.infrastructure.framework.offer.controller.mapper.HttpOfferMapper;
 import com.inditex.hiring.infrastructure.framework.offer.repository.JpaOfferMapper;
 import com.inditex.hiring.infrastructure.framework.offer.repository.JpaOfferRepositoryClient;
@@ -25,6 +27,11 @@ public class OfferConfig {
     }
 
     @Bean
+    public RetrieveOfferByPartNumberService retrieveOfferByPartitionService() {
+        return new RetrieveOfferByPartNumberService();
+    }
+
+    @Bean
     public OffsetDateTimeHandler offsetDateTimeHandler() {
         return new OffsetDateTimeHandler();
     }
@@ -35,9 +42,16 @@ public class OfferConfig {
     }
 
     @Bean
+    public HttpOfferByPartNumberMapper httpOfferByPartNumberMapper(
+            OffsetDateTimeHandler offsetDateTimeHandler
+    ) {
+        return new HttpOfferByPartNumberMapper(offsetDateTimeHandler);
+    }
+    @Bean
     public JpaOfferMapper jpaOfferMapper() {
         return new JpaOfferMapper();
     }
+
     @Bean
     public OfferRepository offerRepository(
             JpaOfferRepositoryClient jpaOfferRepositoryClient,
