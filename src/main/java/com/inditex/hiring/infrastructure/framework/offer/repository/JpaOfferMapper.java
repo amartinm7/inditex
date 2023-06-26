@@ -15,6 +15,7 @@ import com.inditex.hiring.domain.offer.Priority;
 import com.inditex.hiring.domain.offer.PartNumber;
 import com.inditex.hiring.domain.offer.StartDate;
 
+import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -30,7 +31,7 @@ public class JpaOfferMapper {
         return toOffer(jpaOfferOptional.get());
     }
 
-    private OfferAggregate toOffer(JpaOffer jpaOffer) {
+    public OfferAggregate toOffer(JpaOffer jpaOffer) {
         return OfferAggregate.of(
                 new OfferId(jpaOffer.getOfferId()),
                 new BrandId(jpaOffer.getBrandId()),
@@ -51,5 +52,21 @@ public class JpaOfferMapper {
                 .stream()
                 .map(jpaOffer -> toOffer(jpaOffer))
                 .collect(toList());
+    }
+
+    public JpaOffer toJpaOffer(OfferAggregate offer) {
+        return JpaOffer.of(
+                offer.offerId().value(),
+                offer.brandId().value(),
+                offer.startDate().value(),
+                offer.endDate().value(),
+                offer.priceListId().value(),
+                offer.partnumber().value(),
+                offer.priority().value(),
+                offer.price().value(),
+                offer.currencyIso().value(),
+                offer.createdAt().value(),
+                offer.modifiedAt().value()
+        );
     }
 }

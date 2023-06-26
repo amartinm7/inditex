@@ -34,7 +34,7 @@ class OfferRepositoryProviderTest {
     public void should_return_a_valid_offer_given_any_id() {
         //Given
         mock_repository_find_by_id();
-        mock_to_offer_mapper();
+        mock_mapper_jpa_offer_to_offer();
         //When
         Offer offer = offerRepositoryProvider.findById(ANY_OFFER_ID);
         //Then
@@ -47,7 +47,7 @@ class OfferRepositoryProviderTest {
     public void should_return_an_empty_for_unknown_offer_id() {
         //Given
         mock_repository_to_unknown_id();
-        mock_to_empty_offer_mapper();
+        mock_mapper_jpa_offer_to_empty_offer();
         //When
         Offer offer = offerRepositoryProvider.findById(ANY_OFFER_ID);
         //Then
@@ -60,7 +60,7 @@ class OfferRepositoryProviderTest {
     public void should_return_an_offer_list() {
         //Given
         mock_repository_find_all();
-        mock_to_offer_list_mapper();
+        mock_mapper_jpa_list_to_offer_list();
         //When
         List<OfferAggregate> offerList = offerRepositoryProvider.findAll();
         //Then
@@ -72,8 +72,8 @@ class OfferRepositoryProviderTest {
     @Test
     public void should_return_an_offer_list_given_brand_id_and_partNumber() {
         //Given
-        mock_repository_find_by_brand_id_and_part_number();
-        mock_to_offer_list_mapper();
+        mock_repository_find_jpa_offer_list_by_brand_id_and_part_number();
+        mock_mapper_jpa_list_to_offer_list();
         //When
         List<OfferAggregate> offerList = offerRepositoryProvider.findByBrandIdPartNumber(ANY_BRAND_ID, ANY_PART_NUMBER);
         //Then
@@ -86,7 +86,7 @@ class OfferRepositoryProviderTest {
     @Test
     public void should_delete_an_offer_given_an_offer_id() {
         //Given
-        mock_repository_delete_offer_by_id();
+        mock_repository_delete_a_jpa_offer_by_id();
         //When
         offerRepositoryProvider.deleteById(ANY_OFFER_ID);
         //Then
@@ -96,11 +96,22 @@ class OfferRepositoryProviderTest {
     @Test
     public void should_delete_all_offers() {
         //Given
-        mock_repository_delete_all_offer();
+        mock_repository_delete_all_jpa_offers();
         //When
         offerRepositoryProvider.deleteAll();
         //Then
         verify(jpaOfferRepositoryClient, times(1)).deleteAll();
+    }
+
+    @Test
+    public void should_save_an_offer() {
+        //Given
+        mock_repository_save_a_jpa_offer();
+        mock_mapper_offer_to_jpa_offer();
+        //When
+        offerRepositoryProvider.save(ANY_OFFER_AGGREGATE);
+        //Then
+        verify(jpaOfferRepositoryClient, times(1)).save(ANY_JPA_OFFER);
     }
 
     private void mock_repository_find_by_id() {
@@ -115,28 +126,37 @@ class OfferRepositoryProviderTest {
         when(jpaOfferRepositoryClient.findById(ANY_OFFER_ID)).thenReturn(Optional.empty());
     }
 
-    private void mock_to_offer_mapper() {
+    private void mock_mapper_jpa_offer_to_offer() {
         when(jpaOfferMapper.toOffer(Optional.of(ANY_JPA_OFFER))).thenReturn(ANY_OFFER_AGGREGATE);
     }
 
-    private void mock_to_empty_offer_mapper() {
+    private void mock_mapper_jpa_offer_to_empty_offer() {
         when(jpaOfferMapper.toOffer(Optional.empty())).thenReturn(ANY_OFFER_EMPTY);
     }
 
-    private void mock_to_offer_list_mapper() {
+    private void mock_mapper_jpa_list_to_offer_list() {
         when(jpaOfferMapper.toOffer(ANY_ALL_JPA_OFFERS)).thenReturn(ANY_ALL_OFFERS);
     }
 
-    private void mock_repository_find_by_brand_id_and_part_number() {
+
+    private void mock_mapper_offer_to_jpa_offer(){
+        when(jpaOfferMapper.toJpaOffer(ANY_OFFER_AGGREGATE)).thenReturn(ANY_JPA_OFFER);
+    }
+
+    private void mock_repository_find_jpa_offer_list_by_brand_id_and_part_number() {
         when(jpaOfferRepositoryClient.findByBrandIdPartNumber(ANY_BRAND_ID, ANY_PART_NUMBER))
                 .thenReturn(ANY_ALL_JPA_OFFERS);
     }
 
-    private void mock_repository_delete_offer_by_id() {
+    private void mock_repository_delete_a_jpa_offer_by_id() {
         doNothing().when(jpaOfferRepositoryClient).deleteById(ANY_OFFER_ID);
     }
 
-    private void mock_repository_delete_all_offer() {
+    private void mock_repository_delete_all_jpa_offers() {
         doNothing().when(jpaOfferRepositoryClient).deleteAll();
+    }
+
+    private void mock_repository_save_a_jpa_offer() {
+        when(jpaOfferRepositoryClient.save(ANY_JPA_OFFER)).thenReturn(ANY_JPA_OFFER);
     }
 }

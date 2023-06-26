@@ -42,7 +42,6 @@ public class JpaOffer {
     @Column(name = "modified_at")
     OffsetDateTime modifiedAt;
 
-
     public JpaOffer() {
     }
 

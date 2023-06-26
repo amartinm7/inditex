@@ -41,4 +41,9 @@ public class OfferRepositoryProvider implements OfferRepository {
     public void deleteAll() {
         jpaOfferRepositoryClient.deleteAll();
     }
+
+    @Override
+    public void save(OfferAggregate offer) {
+        jpaOfferRepositoryClient.save(jpaOfferMapper.toJpaOffer(offer));
+    }
 }

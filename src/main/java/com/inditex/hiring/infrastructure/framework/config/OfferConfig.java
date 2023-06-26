@@ -47,8 +47,8 @@ public class OfferConfig {
     }
 
     @Bean
-    public CreateOfferService createOfferService() {
-        return new CreateOfferService();
+    public CreateOfferService createOfferService(OfferRepository offerRepository) {
+        return new CreateOfferService(offerRepository);
     }
 
     @Bean
