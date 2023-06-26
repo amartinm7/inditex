@@ -23,7 +23,7 @@ public class HttpOfferMapper {
                 offsetDateTimeHandler.toStringUTC(offerAggregate.startDate().value()),
                 offsetDateTimeHandler.toStringUTC(offerAggregate.endDate().value()),
                 offerAggregate.priceListId().value(),
-                offerAggregate.productPartnumber().value(),
+                offerAggregate.partnumber().value(),
                 offerAggregate.priority().value(),
                 offerAggregate.price().value(),
                 offerAggregate.currencyIso().value()

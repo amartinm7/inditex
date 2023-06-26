@@ -16,7 +16,7 @@ import com.inditex.hiring.domain.offer.OfferId;
 import com.inditex.hiring.domain.offer.Price;
 import com.inditex.hiring.domain.offer.PriceListId;
 import com.inditex.hiring.domain.offer.Priority;
-import com.inditex.hiring.domain.offer.ProductPartNumber;
+import com.inditex.hiring.domain.offer.PartNumber;
 import com.inditex.hiring.domain.offer.StartDate;
 import com.inditex.hiring.infrastructure.framework.offer.controller.dto.HttpOffer;
 import com.inditex.hiring.infrastructure.framework.offer.controller.dto.HttpOfferByPartNumber;
@@ -43,7 +43,7 @@ public class OfferFixtures {
 
     public static Long ANY_PRICELIST_ID = 1L;
 
-    public static String ANY_PRODUCT_PART_NUMBER = "0001002";
+    public static String ANY_PART_NUMBER = "0001002";
 
     public static Integer ANY_PRIORITY = 0;
 
@@ -57,7 +57,7 @@ public class OfferFixtures {
             ANY_START_DATE_STR,
             ANY_END_DATE_STR,
             ANY_PRICELIST_ID,
-            ANY_PRODUCT_PART_NUMBER,
+            ANY_PART_NUMBER,
             ANY_PRIORITY,
             ANY_PRICE,
             ANY_CURRENCY_ISO
@@ -70,7 +70,7 @@ public class OfferFixtures {
     public static StartDate START_DATE = new StartDate(ANY_START_DATE);
     public static EndDate END_DATE = new EndDate(ANY_END_DATE);
     public static PriceListId PRICELIST = new PriceListId(ANY_PRICELIST_ID);
-    public static ProductPartNumber PRODUCT_PART_NUMBER = new ProductPartNumber(ANY_PRODUCT_PART_NUMBER);
+    public static PartNumber PRODUCT_PART_NUMBER = new PartNumber(ANY_PART_NUMBER);
     public static Priority PRIORITY = new Priority(ANY_PRIORITY);
     public static Price PRICE = new Price(ANY_PRICE);
     public static CurrencyIso CURRENCY_ISO = new CurrencyIso(ANY_CURRENCY_ISO);
@@ -111,7 +111,7 @@ public class OfferFixtures {
             ANY_START_DATE,
             ANY_END_DATE,
             ANY_PRICELIST_ID,
-            ANY_PRODUCT_PART_NUMBER,
+            ANY_PART_NUMBER,
             ANY_PRIORITY,
             ANY_PRICE,
             ANY_CURRENCY_ISO,
@@ -124,7 +124,7 @@ public class OfferFixtures {
     public static final List<HttpOfferByPartNumber> ANY_HTTP_OFFER_BY_PART_NUMBER_LIST = List.of(ANY_OFFER_BY_PART_NUMBER);
 
     public static final RetrieveOfferByPartNumberServiceRequest ANY_RETRIEVE_OFFER_BY_PART_NUMB_REQUEST =
-            new RetrieveOfferByPartNumberServiceRequest(ANY_BRAND_ID, ANY_PRODUCT_PART_NUMBER);
+            new RetrieveOfferByPartNumberServiceRequest(ANY_BRAND_ID, ANY_PART_NUMBER);
 
     public static final RetrieveOfferByPartNumberServiceResponse ANY_RETRIEVE_OFFER_BY_PART_NUMB_RESPONSE =
             new RetrieveOfferByPartNumberServiceResponse(ANY_ALL_OFFERS);

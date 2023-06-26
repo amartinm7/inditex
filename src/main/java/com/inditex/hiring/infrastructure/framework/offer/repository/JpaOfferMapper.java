@@ -12,7 +12,7 @@ import com.inditex.hiring.domain.offer.OfferId;
 import com.inditex.hiring.domain.offer.Price;
 import com.inditex.hiring.domain.offer.PriceListId;
 import com.inditex.hiring.domain.offer.Priority;
-import com.inditex.hiring.domain.offer.ProductPartNumber;
+import com.inditex.hiring.domain.offer.PartNumber;
 import com.inditex.hiring.domain.offer.StartDate;
 
 import java.util.List;
@@ -37,7 +37,7 @@ public class JpaOfferMapper {
                 new StartDate(jpaOffer.getStartDate()),
                 new EndDate(jpaOffer.getEndDate()),
                 new PriceListId(jpaOffer.getPriceListId()),
-                new ProductPartNumber(jpaOffer.getProductPartnumber()),
+                new PartNumber(jpaOffer.getPartNumber()),
                 new Priority(jpaOffer.getPriority()),
                 new Price(jpaOffer.getPrice()),
                 new CurrencyIso(jpaOffer.getCurrencyIso()),

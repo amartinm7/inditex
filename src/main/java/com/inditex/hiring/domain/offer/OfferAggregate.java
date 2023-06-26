@@ -6,7 +6,7 @@ public record OfferAggregate(
         StartDate startDate,
         EndDate endDate,
         PriceListId priceListId,
-        ProductPartNumber productPartnumber,
+        PartNumber partnumber,
         Priority priority,
         Price price,
         CurrencyIso currencyIso,
@@ -15,9 +15,9 @@ public record OfferAggregate(
 
 ) implements Offer {
     public static OfferAggregate of(OfferId offerId, BrandId brandId, StartDate startDate, EndDate endDate,
-                                    PriceListId priceListId, ProductPartNumber productPartnumber, Priority priority,
+                                    PriceListId priceListId, PartNumber partnumber, Priority priority,
                                     Price price, CurrencyIso currencyIso, CreatedAt createdAt, ModifiedAt modifiedAt) {
-        return new OfferAggregate(offerId, brandId, startDate, endDate, priceListId, productPartnumber, priority,
+        return new OfferAggregate(offerId, brandId, startDate, endDate, priceListId, partnumber, priority,
                 price, currencyIso, createdAt, modifiedAt);
     }
 }

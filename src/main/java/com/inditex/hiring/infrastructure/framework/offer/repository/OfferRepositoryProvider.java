@@ -28,7 +28,7 @@ public class OfferRepositoryProvider implements OfferRepository {
     }
 
     @Override
-    public List<OfferAggregate> findByBrandIdPartNumber(Integer anyBrandId, String anyProductPartNumber) {
-        return null;
+    public List<OfferAggregate> findByBrandIdPartNumber(Integer brandId, String partNumber) {
+        return jpaOfferMapper.toOffer(jpaOfferRepositoryClient.findByBrandIdPartNumber(brandId, partNumber));
     }
 }

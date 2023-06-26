@@ -11,7 +11,7 @@ import java.util.List;
 import static com.inditex.hiring.OfferFixtures.ANY_ALL_OFFERS;
 import static com.inditex.hiring.OfferFixtures.ANY_BRAND_ID;
 import static com.inditex.hiring.OfferFixtures.ANY_HTTP_OFFER_BY_PART_NUMBER_LIST;
-import static com.inditex.hiring.OfferFixtures.ANY_PRODUCT_PART_NUMBER;
+import static com.inditex.hiring.OfferFixtures.ANY_PART_NUMBER;
 import static com.inditex.hiring.OfferFixtures.ANY_RETRIEVE_OFFER_BY_PART_NUMB_REQUEST;
 import static com.inditex.hiring.OfferFixtures.ANY_RETRIEVE_OFFER_BY_PART_NUMB_RESPONSE;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -35,7 +35,7 @@ class RetrieveOfferByPartNumberControllerTest {
         //When
         List<HttpOfferByPartNumber> response =
                 retrieveOfferByPartNumberController.getOfferByPartNumber(
-                        ANY_BRAND_ID, ANY_PRODUCT_PART_NUMBER
+                        ANY_BRAND_ID, ANY_PART_NUMBER
                 );
         //Then
         assertThat(response).isEqualTo(ANY_HTTP_OFFER_BY_PART_NUMBER_LIST);

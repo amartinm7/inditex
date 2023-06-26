@@ -28,7 +28,7 @@ public class JpaOffer {
     @Column(name = "price_list")
     Long priceListId;
     @Column(name = "partnumber")
-    String productPartnumber;
+    String partNumber;
     @Column(name = "priority")
     Integer priority;
     @Column(name = "price")
@@ -46,13 +46,13 @@ public class JpaOffer {
     public JpaOffer() {
     }
 
-    public JpaOffer(Long offerId, Integer brandId, OffsetDateTime startDate, OffsetDateTime endDate, Long priceListId, String productPartnumber, Integer priority, BigDecimal price, String currencyIso, OffsetDateTime createdAt, OffsetDateTime modifiedAt) {
+    public JpaOffer(Long offerId, Integer brandId, OffsetDateTime startDate, OffsetDateTime endDate, Long priceListId, String partNumber, Integer priority, BigDecimal price, String currencyIso, OffsetDateTime createdAt, OffsetDateTime modifiedAt) {
         this.offerId = offerId;
         this.brandId = brandId;
         this.startDate = startDate;
         this.endDate = endDate;
         this.priceListId = priceListId;
-        this.productPartnumber = productPartnumber;
+        this.partNumber = partNumber;
         this.priority = priority;
         this.price = price;
         this.currencyIso = currencyIso;
@@ -105,12 +105,12 @@ public class JpaOffer {
         this.priceListId = priceListId;
     }
 
-    public String getProductPartnumber() {
-        return productPartnumber;
+    public String getPartNumber() {
+        return partNumber;
     }
 
-    public void setProductPartnumber(String productPartnumber) {
-        this.productPartnumber = productPartnumber;
+    public void setPartNumber(String productPartnumber) {
+        this.partNumber = productPartnumber;
     }
 
     public Integer getPriority() {
@@ -157,12 +157,12 @@ public class JpaOffer {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof JpaOffer jpaOffer)) return false;
-        return Objects.equals(getOfferId(), jpaOffer.getOfferId()) && Objects.equals(getBrandId(), jpaOffer.getBrandId()) && Objects.equals(getStartDate(), jpaOffer.getStartDate()) && Objects.equals(getEndDate(), jpaOffer.getEndDate()) && Objects.equals(getPriceListId(), jpaOffer.getPriceListId()) && Objects.equals(getProductPartnumber(), jpaOffer.getProductPartnumber()) && Objects.equals(getPriority(), jpaOffer.getPriority()) && Objects.equals(getPrice(), jpaOffer.getPrice()) && Objects.equals(getCurrencyIso(), jpaOffer.getCurrencyIso()) && Objects.equals(getCreatedAt(), jpaOffer.getCreatedAt()) && Objects.equals(getModifiedAt(), jpaOffer.getModifiedAt());
+        return Objects.equals(getOfferId(), jpaOffer.getOfferId()) && Objects.equals(getBrandId(), jpaOffer.getBrandId()) && Objects.equals(getStartDate(), jpaOffer.getStartDate()) && Objects.equals(getEndDate(), jpaOffer.getEndDate()) && Objects.equals(getPriceListId(), jpaOffer.getPriceListId()) && Objects.equals(getPartNumber(), jpaOffer.getPartNumber()) && Objects.equals(getPriority(), jpaOffer.getPriority()) && Objects.equals(getPrice(), jpaOffer.getPrice()) && Objects.equals(getCurrencyIso(), jpaOffer.getCurrencyIso()) && Objects.equals(getCreatedAt(), jpaOffer.getCreatedAt()) && Objects.equals(getModifiedAt(), jpaOffer.getModifiedAt());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getOfferId(), getBrandId(), getStartDate(), getEndDate(), getPriceListId(), getProductPartnumber(), getPriority(), getPrice(), getCurrencyIso(), getCreatedAt(), getModifiedAt());
+        return Objects.hash(getOfferId(), getBrandId(), getStartDate(), getEndDate(), getPriceListId(), getPartNumber(), getPriority(), getPrice(), getCurrencyIso(), getCreatedAt(), getModifiedAt());
     }
 
     @Override
@@ -173,7 +173,7 @@ public class JpaOffer {
                 ", startDate=" + startDate +
                 ", endDate=" + endDate +
                 ", priceListId=" + priceListId +
-                ", productPartnumber='" + productPartnumber + '\'' +
+                ", productPartnumber='" + partNumber + '\'' +
                 ", priority=" + priority +
                 ", price=" + price +
                 ", currencyIso='" + currencyIso + '\'' +
