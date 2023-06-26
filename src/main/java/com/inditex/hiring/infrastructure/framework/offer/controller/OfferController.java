@@ -44,15 +44,6 @@ public class OfferController {
 
   }
 
-  @RequestMapping(value = "/offer", method = RequestMethod.GET)
-  @ResponseStatus(HttpStatus.OK)
-  public List<HttpOffer> getAllOffers() {
-
-    //TODO implement it!.
-    return new ArrayList<>();
-
-  }
-
   @RequestMapping(value = "brand/{brandId}/partnumber/{partnumber}/offer", method = RequestMethod.GET)
   @ResponseStatus(HttpStatus.OK)
   public List<OfferByPartNumber> getOfferByPartNumber(Integer brandId, String partnumber) {

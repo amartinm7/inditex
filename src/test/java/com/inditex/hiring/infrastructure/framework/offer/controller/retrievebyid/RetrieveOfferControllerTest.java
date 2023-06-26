@@ -29,7 +29,7 @@ class RetrieveOfferControllerTest {
     void should_retrieve_an_offer() {
         //given
         mock_service_and_retrieve_a_valid_offer();
-        mock_httpOfferMapper();
+        mock_map_to_httpOffer();
         HttpOffer expectedHttpOffer = ANY_OFFER_HTTP;
         //when
         HttpOffer obtainedHttpOffer = retrieveOfferController.getOfferById(ANY_OFFER_ID);
@@ -44,7 +44,7 @@ class RetrieveOfferControllerTest {
     void should_retrieve_an_empty_offer() {
         //given
         mock_service_and_retrieve_an_empty_offer();
-        mock_httpOfferMapper();
+        mock_map_to_httpOffer();
         //when then
         assertThrows(OfferNotFound.class, () -> {
             retrieveOfferController.getOfferById(ANY_OFFER_ID);
@@ -56,7 +56,7 @@ class RetrieveOfferControllerTest {
                 .thenReturn(ANY_RETRIEVE_OFFER_RESPONSE);
     }
 
-    private void mock_httpOfferMapper() {
+    private void mock_map_to_httpOffer() {
         Mockito.when(httpOfferMapper.mapToHttpResponse(ANY_OFFER_AGGREGATE))
                 .thenReturn(ANY_OFFER_HTTP);
     }

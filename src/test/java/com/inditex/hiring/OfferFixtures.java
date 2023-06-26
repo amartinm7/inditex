@@ -22,7 +22,6 @@ import com.inditex.hiring.infrastructure.service.OffsetDateTimeHandler;
 
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 public class OfferFixtures {
@@ -60,6 +59,8 @@ public class OfferFixtures {
             ANY_PRICE,
             ANY_CURRENCY_ISO
     );
+
+    public static final List<HttpOffer> ANY_ALL_OFFERS_HTTP = List.of(ANY_OFFER_HTTP);
 
     public static OfferId OFFER_ID = new OfferId(ANY_OFFER_ID);
     public static BrandId BRAND_ID = new BrandId(ANY_BRAND_ID);
