@@ -1,5 +1,6 @@
 package com.inditex.hiring.infrastructure.framework.offer.controller.mapper;
 
+import com.inditex.hiring.domain.offer.OfferAggregate;
 import com.inditex.hiring.infrastructure.framework.offer.controller.dto.HttpOffer;
 import com.inditex.hiring.infrastructure.service.OffsetDateTimeHandler;
 import org.junit.jupiter.api.Test;
@@ -26,7 +27,7 @@ class HttpOfferMapperTest {
             new HttpOfferMapper(offsetDateTimeHandler);
 
     @Test
-    void should_map_an_offer() {
+    void should_map_an_http_offer_from_an_offer() {
         //given
         mock_offsetDateTimeHandler();
         //when
@@ -38,7 +39,7 @@ class HttpOfferMapperTest {
     }
 
     @Test
-    void should_map_a_offer_list() {
+    void should_map_a_http_offer_list_from_an_offer_list() {
         //given
         mock_offsetDateTimeHandler();
         //when
@@ -49,10 +50,32 @@ class HttpOfferMapperTest {
         verify(offsetDateTimeHandler, times(1)).toStringUTC(ANY_END_DATE);
     }
 
+    @Test
+    void should_map_a_offer_from_a_http_offer() {
+        //given
+        mock_offsetDateTimeHandler_now();
+        //when
+        OfferAggregate response = httpOfferMapper.mapToOffer(ANY_HTTP_OFFER);
+        //then
+        assertThat(response).isEqualTo(ANY_OFFER_AGGREGATE);
+        verify(offsetDateTimeHandler, times(2)).now();
+        verify(offsetDateTimeHandler, times(1)).toOffsetDateTime(ANY_START_DATE_STR);
+        verify(offsetDateTimeHandler, times(1)).toOffsetDateTime(ANY_END_DATE_STR);
+    }
+
     private void mock_offsetDateTimeHandler() {
         Mockito.when(offsetDateTimeHandler.toStringUTC(ANY_START_DATE))
                 .thenReturn(ANY_START_DATE_STR);
         Mockito.when(offsetDateTimeHandler.toStringUTC(ANY_END_DATE))
                 .thenReturn(ANY_END_DATE_STR);
+    }
+
+    private void mock_offsetDateTimeHandler_now() {
+        Mockito.when(offsetDateTimeHandler.now())
+                .thenReturn(ANY_START_DATE);
+        Mockito.when(offsetDateTimeHandler.toOffsetDateTime(ANY_START_DATE_STR))
+                .thenReturn(ANY_START_DATE);
+        Mockito.when(offsetDateTimeHandler.toOffsetDateTime(ANY_END_DATE_STR))
+                .thenReturn(ANY_END_DATE);
     }
 }

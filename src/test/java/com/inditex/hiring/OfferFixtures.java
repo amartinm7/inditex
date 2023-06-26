@@ -1,5 +1,6 @@
 package com.inditex.hiring;
 
+import com.inditex.hiring.application.offer.create.CreateOfferServiceRequest;
 import com.inditex.hiring.application.offer.deletebyid.DeleteOfferServiceRequest;
 import com.inditex.hiring.application.offer.retrieveall.RetrieveAllOffersServiceResponse;
 import com.inditex.hiring.application.offer.retrievebyid.RetrieveOfferServiceRequest;
@@ -134,4 +135,7 @@ public class OfferFixtures {
 
     public static final DeleteOfferServiceRequest ANY_DELETE_OFFER_BY_ID_REQUEST =
             new DeleteOfferServiceRequest(ANY_OFFER_ID);
+
+    public static final CreateOfferServiceRequest ANY_CREATE_OFFER_REQUEST =
+            new CreateOfferServiceRequest(ANY_OFFER_AGGREGATE);
 }
