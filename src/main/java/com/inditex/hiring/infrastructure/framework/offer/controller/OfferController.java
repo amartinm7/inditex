@@ -32,14 +32,4 @@ public class OfferController {
     //TODO implement it!.
 
   }
-
-  @RequestMapping(value = "/offer/{id}", method = RequestMethod.DELETE)
-  @ResponseStatus(HttpStatus.OK)
-  public void deleteOfferById(@RequestParam Long id) {
-
-    //TODO implement it!.
-
-  }
-
-
 }

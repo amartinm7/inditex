@@ -1,5 +1,6 @@
 package com.inditex.hiring.infrastructure.framework.config;
 
+import com.inditex.hiring.application.offer.deletebyid.DeleteOfferService;
 import com.inditex.hiring.application.offer.retrieveall.RetrieveAllOffersService;
 import com.inditex.hiring.application.offer.retrievebyid.RetrieveOfferService;
 import com.inditex.hiring.application.offer.retrievebypartnumber.RetrieveOfferByPartNumberService;
@@ -31,6 +32,11 @@ public class OfferConfig {
             OfferRepository offerRepository
     ) {
         return new RetrieveOfferByPartNumberService(offerRepository);
+    }
+
+    @Bean
+    public DeleteOfferService deleteOfferService() {
+        return new DeleteOfferService();
     }
 
     @Bean
