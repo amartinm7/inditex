@@ -25,11 +25,4 @@ public class OfferController {
 
   }
 
-  @RequestMapping(value = "/offer", method = RequestMethod.DELETE)
-  @ResponseStatus(HttpStatus.OK)
-  public void deleteAllOffers() {
-
-    //TODO implement it!.
-
-  }
 }

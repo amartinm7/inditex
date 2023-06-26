@@ -93,6 +93,16 @@ class OfferRepositoryProviderTest {
         verify(jpaOfferRepositoryClient, times(1)).deleteById(ANY_OFFER_ID);
     }
 
+    @Test
+    public void should_delete_all_offers() {
+        //Given
+        mock_repository_delete_all_offer();
+        //When
+        offerRepositoryProvider.deleteAll();
+        //Then
+        verify(jpaOfferRepositoryClient, times(1)).deleteAll();
+    }
+
     private void mock_repository_find_by_id() {
         when(jpaOfferRepositoryClient.findById(ANY_OFFER_ID)).thenReturn(Optional.of(ANY_JPA_OFFER));
     }
@@ -124,5 +134,9 @@ class OfferRepositoryProviderTest {
 
     private void mock_repository_delete_offer_by_id() {
         doNothing().when(jpaOfferRepositoryClient).deleteById(ANY_OFFER_ID);
+    }
+
+    private void mock_repository_delete_all_offer() {
+        doNothing().when(jpaOfferRepositoryClient).deleteAll();
     }
 }

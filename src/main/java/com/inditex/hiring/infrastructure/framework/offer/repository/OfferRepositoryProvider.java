@@ -36,4 +36,9 @@ public class OfferRepositoryProvider implements OfferRepository {
     public void deleteById(Long offerId) {
         jpaOfferRepositoryClient.deleteById(offerId);
     }
+
+    @Override
+    public void deleteAll() {
+        jpaOfferRepositoryClient.deleteAll();
+    }
 }

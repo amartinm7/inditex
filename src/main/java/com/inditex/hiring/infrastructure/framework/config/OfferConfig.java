@@ -1,5 +1,6 @@
 package com.inditex.hiring.infrastructure.framework.config;
 
+import com.inditex.hiring.application.offer.deleteall.DeleteAllOffersService;
 import com.inditex.hiring.application.offer.deletebyid.DeleteOfferService;
 import com.inditex.hiring.application.offer.retrieveall.RetrieveAllOffersService;
 import com.inditex.hiring.application.offer.retrievebyid.RetrieveOfferService;
@@ -40,6 +41,11 @@ public class OfferConfig {
     }
 
     @Bean
+    public DeleteAllOffersService deleteAllOffersService(OfferRepository offerRepository) {
+        return new DeleteAllOffersService(offerRepository);
+    }
+
+    @Bean
     public OffsetDateTimeHandler offsetDateTimeHandler() {
         return new OffsetDateTimeHandler();
     }
@@ -55,6 +61,7 @@ public class OfferConfig {
     ) {
         return new HttpOfferByPartNumberMapper(offsetDateTimeHandler);
     }
+
     @Bean
     public JpaOfferMapper jpaOfferMapper() {
         return new JpaOfferMapper();
