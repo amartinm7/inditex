@@ -1,6 +1,6 @@
 package com.inditex.hiring.application.offer.retrieveall;
 
-import com.inditex.hiring.domain.offer.OfferRepository;
+import com.inditex.hiring.domain.offer.port.OfferRepository;
 
 public class RetrieveAllOffersService {
 

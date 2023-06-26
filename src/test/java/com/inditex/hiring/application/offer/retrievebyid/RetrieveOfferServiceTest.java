@@ -1,7 +1,7 @@
 package com.inditex.hiring.application.offer.retrievebyid;
 
 import com.inditex.hiring.OfferFixtures;
-import com.inditex.hiring.domain.offer.OfferRepository;
+import com.inditex.hiring.domain.offer.port.OfferRepository;
 import com.inditex.hiring.infrastructure.framework.offer.repository.OfferRepositoryProvider;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;

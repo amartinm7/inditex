@@ -1,7 +1,7 @@
 package com.inditex.hiring.application.offer.retrievebyid;
 
 import com.inditex.hiring.domain.offer.Offer;
-import com.inditex.hiring.domain.offer.OfferRepository;
+import com.inditex.hiring.domain.offer.port.OfferRepository;
 
 public class RetrieveOfferService {
 

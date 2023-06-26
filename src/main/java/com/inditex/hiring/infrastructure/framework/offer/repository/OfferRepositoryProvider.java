@@ -2,7 +2,7 @@ package com.inditex.hiring.infrastructure.framework.offer.repository;
 
 import com.inditex.hiring.domain.offer.Offer;
 import com.inditex.hiring.domain.offer.OfferAggregate;
-import com.inditex.hiring.domain.offer.OfferRepository;
+import com.inditex.hiring.domain.offer.port.OfferRepository;
 
 import java.util.List;
 

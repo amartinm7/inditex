@@ -2,7 +2,7 @@ package com.inditex.hiring.infrastructure.framework.config;
 
 import com.inditex.hiring.application.offer.retrieveall.RetrieveAllOffersService;
 import com.inditex.hiring.application.offer.retrievebyid.RetrieveOfferService;
-import com.inditex.hiring.domain.offer.OfferRepository;
+import com.inditex.hiring.domain.offer.port.OfferRepository;
 import com.inditex.hiring.infrastructure.framework.offer.controller.mapper.HttpOfferMapper;
 import com.inditex.hiring.infrastructure.framework.offer.repository.JpaOfferMapper;
 import com.inditex.hiring.infrastructure.framework.offer.repository.JpaOfferRepositoryClient;
