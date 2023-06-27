@@ -12,6 +12,7 @@ import static com.inditex.hiring.OfferFixtures.ANY_ALL_OFFERS;
 import static com.inditex.hiring.OfferFixtures.ANY_ALL_HTTP_OFFERS;
 import static com.inditex.hiring.OfferFixtures.ANY_RETRIEVE_ALL_OFFERS_RESPONSE;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
 class RetrieveAllOffersControllerTest {
@@ -30,7 +31,8 @@ class RetrieveAllOffersControllerTest {
         //then
         assertThat(response.size()).isEqualTo(1);
 
-        verify(retrieveAllOffersService).execute();
+        verify(retrieveAllOffersService, times(1)).execute();
+        verify(httpOfferMapper, times(1)).mapToHttpResponse(ANY_ALL_OFFERS);
     }
 
     private void mock_service_to_retrieve_all_offers() {
