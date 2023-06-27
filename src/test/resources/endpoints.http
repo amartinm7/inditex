@@ -11,7 +11,7 @@ GET http://localhost:8080/offer
 GET http://localhost:8080/brand/1/partnumber/0001002/offer
 
 ### DELETE offer by id, not found if the database is empty
-DELETE http://localhost:8080/offer/1
+DELETE http://localhost:8080/offer/
 
 ### DELETE all offers by id, not found if the database is empty
 DELETE http://localhost:8080/offer

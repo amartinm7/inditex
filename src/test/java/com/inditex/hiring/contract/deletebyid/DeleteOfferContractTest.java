@@ -1,6 +1,6 @@
-package com.inditex.hiring.contract.deleteall;
+package com.inditex.hiring.contract.deletebyid;
 
-import com.inditex.hiring.application.offer.deleteall.DeleteAllOffersService;
+import com.inditex.hiring.application.offer.deletebyid.DeleteOfferService;
 import com.inditex.hiring.contract.SpringbootContractTest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -12,26 +12,44 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import java.util.stream.Stream;
 
+import static com.inditex.hiring.OfferFixtures.ANY_DELETE_OFFER_BY_ID_REQUEST;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-public class DeleteAllOffersContractTest extends SpringbootContractTest {
+public class DeleteOfferContractTest extends SpringbootContractTest {
 
     @Autowired
-    private DeleteAllOffersService deleteAllOffersService;
+    private DeleteOfferService deleteOfferService;
 
     @Test
-    void should_delete_all_offers() throws Exception {
+    void should_delete_offer() throws Exception {
         //Given
-        mock_service_to_delete_all_offers();
+        mock_service_to_delete_an_offer();
         //When / then
         mockMvc.perform(newHttpRequestSuccess())
             .andExpect(status().isOk());
 
-        verify(deleteAllOffersService, times(1)).execute();
+        verify(deleteOfferService, times(1)).execute(ANY_DELETE_OFFER_BY_ID_REQUEST);
+    }
+
+    @Test
+    void should_return_not_found_when_there_is_not_path_variable() throws Exception {
+        //Given /When / then
+        mockMvc.perform(newHttpRequestNotFound())
+            .andExpect(status().isNotFound());
+
+        verify(deleteOfferService, times(0)).execute(ANY_DELETE_OFFER_BY_ID_REQUEST);
+    }
+
+    @Test
+    void should_return_bad_request_when_path_variable_is_wrong() throws Exception {
+        mockMvc.perform(newHttpRequestBadRequestBadId())
+            .andExpect(status().isBadRequest());
+
+        verify(deleteOfferService, times(0)).execute(ANY_DELETE_OFFER_BY_ID_REQUEST);
     }
 
     @ParameterizedTest(name = "{index}: {0} {1}")
@@ -42,7 +60,7 @@ public class DeleteAllOffersContractTest extends SpringbootContractTest {
         mockMvc.perform(newHttpRequestWithParams(context))
             .andExpect(status().isOk());
 
-        verify(deleteAllOffersService, times(1)).execute();
+        verify(deleteOfferService, times(1)).execute(ANY_DELETE_OFFER_BY_ID_REQUEST);
     }
 
     private static Stream<Arguments> provider() {
@@ -54,17 +72,27 @@ public class DeleteAllOffersContractTest extends SpringbootContractTest {
     }
 
     private RequestBuilder newHttpRequestWithParams(String content) {
-        return MockMvcRequestBuilders.delete("/offer?hello=343")
+        return MockMvcRequestBuilders.delete("/offer/1?hello=343")
             .content(content)
             .contentType("application/json");
     }
 
     private RequestBuilder newHttpRequestSuccess() {
-        return MockMvcRequestBuilders.delete("/offer")
+        return MockMvcRequestBuilders.delete("/offer/1")
             .contentType("application/json");
     }
 
-    private void mock_service_to_delete_all_offers() {
-        doNothing().when(deleteAllOffersService).execute();
+    private RequestBuilder newHttpRequestNotFound() {
+        return MockMvcRequestBuilders.delete("/offer/")
+            .contentType("application/json");
+    }
+
+    private RequestBuilder newHttpRequestBadRequestBadId() {
+        return MockMvcRequestBuilders.delete("/offer/dsfsdf")
+            .contentType("application/json");
+    }
+
+    private void mock_service_to_delete_an_offer() {
+        doNothing().when(deleteOfferService).execute(ANY_DELETE_OFFER_BY_ID_REQUEST);
     }
 }
