@@ -1,6 +1,7 @@
 package com.inditex.hiring.contract.deletebyid;
 
 import com.inditex.hiring.application.offer.deletebyid.DeleteOfferService;
+import com.inditex.hiring.application.offer.deletebyid.DeleteOfferServiceRequest;
 import com.inditex.hiring.contract.SpringbootContractTest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -14,6 +15,7 @@ import java.util.stream.Stream;
 
 import static com.inditex.hiring.OfferFixtures.ANY_DELETE_OFFER_BY_ID_REQUEST;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -25,7 +27,7 @@ public class DeleteOfferContractTest extends SpringbootContractTest {
     private DeleteOfferService deleteOfferService;
 
     @Test
-    void should_delete_offer() throws Exception {
+    void should_delete_an_offer() throws Exception {
         //Given
         mock_service_to_delete_an_offer();
         //When / then
@@ -37,11 +39,10 @@ public class DeleteOfferContractTest extends SpringbootContractTest {
 
     @Test
     void should_return_not_found_when_there_is_not_path_variable() throws Exception {
-        //Given /When / then
         mockMvc.perform(newHttpRequestNotFound())
             .andExpect(status().isNotFound());
 
-        verify(deleteOfferService, times(0)).execute(ANY_DELETE_OFFER_BY_ID_REQUEST);
+        verify(deleteOfferService, times(0)).execute(any(DeleteOfferServiceRequest.class));
     }
 
     @Test
@@ -55,8 +56,6 @@ public class DeleteOfferContractTest extends SpringbootContractTest {
     @ParameterizedTest(name = "{index}: {0} {1}")
     @MethodSource("provider")
     void should_validate_request_body_and_paremeters_are_not_used(String testName, String context) throws Exception {
-        assertThat(testName).isNotEmpty();
-        //When / then
         mockMvc.perform(newHttpRequestWithParams(context))
             .andExpect(status().isOk());
 

@@ -11,6 +11,7 @@ import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import java.util.stream.Stream;
 
@@ -38,7 +39,8 @@ public class RetrieveAllOffersContractTest extends SpringbootContractTest {
         mock_map_to_httpOffer_list();
         //When / then
         mockMvc.perform(newHttpRequestSuccess())
-            .andExpect(status().isOk());
+            .andExpect(status().isOk())
+            .andExpect(MockMvcResultMatchers.content().json(expectedJson, true));
 
         verify(retrieveAllOffersService, times(1)).execute();
     }
@@ -83,4 +85,6 @@ public class RetrieveAllOffersContractTest extends SpringbootContractTest {
         Mockito.when(httpOfferMapper.mapToHttpResponse(ANY_ALL_OFFERS))
             .thenReturn(ANY_ALL_HTTP_OFFERS);
     }
+
+    private final String expectedJson = "[{\"offerId\":1,\"brandId\":1,\"startDate\":\"2020-06-14T00:00:00Z\",\"endDate\":\"2020-12-31T23:59:59Z\",\"priceListId\":1,\"productPartnumber\":\"0001002\",\"priority\":0,\"price\":35.5,\"currencyIso\":\"EUR\"}]";
 }

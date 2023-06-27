@@ -37,8 +37,6 @@ public class DeleteAllOffersContractTest extends SpringbootContractTest {
     @ParameterizedTest(name = "{index}: {0} {1}")
     @MethodSource("provider")
     void should_validate_request_body_and_paremeters_are_not_used(String testName, String context) throws Exception {
-        assertThat(testName).isNotEmpty();
-        //When / then
         mockMvc.perform(newHttpRequestWithParams(context))
             .andExpect(status().isOk());
 

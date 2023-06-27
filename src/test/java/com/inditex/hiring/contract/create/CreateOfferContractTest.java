@@ -52,8 +52,6 @@ public class CreateOfferContractTest extends SpringbootContractTest {
     @ParameterizedTest(name = "{index}: {0} {1}")
     @MethodSource("provider")
     void should_validate_request_body_and_return_bad_request(String testName, String context) throws Exception {
-        assertThat(testName).isNotEmpty();
-        //When / then
         mockMvc.perform(newHttpRequestBadRequest(context))
                 .andExpect(status().isBadRequest());
 
