@@ -18,5 +18,34 @@ DELETE http://localhost:8080/offer
 
 ### POST offer
 POST http://localhost:8080/offer
+Content-Type: application/json
+Accept: application/json
+
 {
+  "brandId": 1,
+  "currencyIso": "EUR",
+  "endDate": "2020-12-31T23:59:59Z",
+  "offerId": 1,
+  "price": 35.5,
+  "priceListId": 1,
+  "priority": 0,
+  "productPartnumber": "0001002",
+  "startDate": "2020-06-14T00:00:00Z"
+}
+
+###
+POST http://localhost:8080/offer
+Content-Type: application/json
+Accept: application/json
+
+{
+  "offerId": 1,
+  "brandId": 1,
+  "currencyIso": "EUR",
+  "endDate": "2020-12-31T23:59:59Z",
+  "price": 1999999999,
+  "priceListId": 1999999999,
+  "priority": 0,
+  "productPartnumber": "999999999",
+  "startDate": "2020-06-14T00:00:00Z"
 }

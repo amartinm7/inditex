@@ -6,6 +6,9 @@ import com.inditex.hiring.infrastructure.framework.offer.controller.dto.HttpOffe
 import com.inditex.hiring.infrastructure.framework.offer.controller.mapper.HttpOfferMapper;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
+import org.springframework.jdbc.BadSqlGrammarException;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -27,7 +30,7 @@ public class CreateOfferController {
 
     @RequestMapping(value = "/offer", method = RequestMethod.POST, consumes = "application/json")
     @ResponseStatus(HttpStatus.CREATED)
-    public void createNewOffer(@RequestBody @Valid HttpOffer httpOffer) {
+    public void createNewOffer(@RequestBody @Valid HttpOffer httpOffer){
         createOfferService.execute(
                 new CreateOfferServiceRequest(httpOfferMapper.mapToOffer(httpOffer))
         );
