@@ -3,7 +3,9 @@ package com.inditex.hiring.infrastructure.framework.offer.repository;
 import com.inditex.hiring.domain.offer.Offer;
 import com.inditex.hiring.domain.offer.OfferAggregate;
 import org.junit.jupiter.api.Test;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,9 +28,11 @@ class OfferRepositoryProviderTest {
 
     private final JpaOfferMapper jpaOfferMapper = mock(JpaOfferMapper.class);
     private final JpaOfferRepositoryClient jpaOfferRepositoryClient = mock(JpaOfferRepositoryClient.class);
+    private final NamedParameterJdbcTemplate jdbcTemplate = mock(NamedParameterJdbcTemplate.class);
+    private final JdbcOfferRepositoryClient jdbcOfferRepositoryClient = mock(JdbcOfferRepositoryClient.class);
 
     private final OfferRepositoryProvider offerRepositoryProvider =
-            new OfferRepositoryProvider(jpaOfferRepositoryClient, jpaOfferMapper);
+            new OfferRepositoryProvider(jpaOfferRepositoryClient, jpaOfferMapper, jdbcOfferRepositoryClient);
 
     @Test
     public void should_return_a_valid_offer_given_any_id() {
@@ -40,7 +44,7 @@ class OfferRepositoryProviderTest {
         //Then
         assertThat(offer).isEqualTo(ANY_OFFER_AGGREGATE);
         verify(jpaOfferRepositoryClient, times(1)).findById(ANY_OFFER_ID);
-        verify(jpaOfferMapper, times(1)).toOffer(Optional.of(ANY_JPA_OFFER));
+        verify(jpaOfferMapper, times(1)).optionalJpaOfferToOffer(Optional.of(ANY_JPA_OFFER));
     }
 
     @Test
@@ -53,7 +57,7 @@ class OfferRepositoryProviderTest {
         //Then
         assertThat(offer).isEqualTo(ANY_OFFER_EMPTY);
         verify(jpaOfferRepositoryClient, times(1)).findById(ANY_OFFER_ID);
-        verify(jpaOfferMapper, times(1)).toOffer(Optional.empty());
+        verify(jpaOfferMapper, times(1)).optionalJpaOfferToOffer(Optional.empty());
     }
 
     @Test
@@ -66,11 +70,11 @@ class OfferRepositoryProviderTest {
         //Then
         assertThat(offerList).isEqualTo(ANY_ALL_OFFERS);
         verify(jpaOfferRepositoryClient, times(1)).findAll();
-        verify(jpaOfferMapper, times(1)).toOffer(ANY_ALL_JPA_OFFERS);
+        verify(jpaOfferMapper, times(1)).toOfferAggregate(ANY_ALL_JPA_OFFERS);
     }
 
     @Test
-    public void should_return_an_offer_list_given_brand_id_and_partNumber() {
+    public void should_return_an_offer_list_given_brand_id_and_partNumber() throws SQLException {
         //Given
         mock_repository_find_jpa_offer_list_by_brand_id_and_part_number();
         mock_mapper_jpa_list_to_offer_list();
@@ -78,9 +82,8 @@ class OfferRepositoryProviderTest {
         List<OfferAggregate> offerList = offerRepositoryProvider.findByBrandIdPartNumber(ANY_BRAND_ID, ANY_PART_NUMBER);
         //Then
         assertThat(offerList).isEqualTo(ANY_ALL_OFFERS);
-        verify(jpaOfferRepositoryClient, times(1))
+        verify(jdbcOfferRepositoryClient, times(1))
                 .findByBrandIdPartNumber(ANY_BRAND_ID, ANY_PART_NUMBER);
-        verify(jpaOfferMapper, times(1)).toOffer(ANY_ALL_JPA_OFFERS);
     }
 
     @Test
@@ -127,25 +130,25 @@ class OfferRepositoryProviderTest {
     }
 
     private void mock_mapper_jpa_offer_to_offer() {
-        when(jpaOfferMapper.toOffer(Optional.of(ANY_JPA_OFFER))).thenReturn(ANY_OFFER_AGGREGATE);
+        when(jpaOfferMapper.optionalJpaOfferToOffer(Optional.of(ANY_JPA_OFFER))).thenReturn(ANY_OFFER_AGGREGATE);
     }
 
     private void mock_mapper_jpa_offer_to_empty_offer() {
-        when(jpaOfferMapper.toOffer(Optional.empty())).thenReturn(ANY_OFFER_EMPTY);
+        when(jpaOfferMapper.optionalJpaOfferToOffer(Optional.empty())).thenReturn(ANY_OFFER_EMPTY);
     }
 
     private void mock_mapper_jpa_list_to_offer_list() {
-        when(jpaOfferMapper.toOffer(ANY_ALL_JPA_OFFERS)).thenReturn(ANY_ALL_OFFERS);
+        when(jpaOfferMapper.toOfferAggregate(ANY_ALL_JPA_OFFERS)).thenReturn(ANY_ALL_OFFERS);
     }
 
 
-    private void mock_mapper_offer_to_jpa_offer(){
+    private void mock_mapper_offer_to_jpa_offer() {
         when(jpaOfferMapper.toJpaOffer(ANY_OFFER_AGGREGATE)).thenReturn(ANY_JPA_OFFER);
     }
 
-    private void mock_repository_find_jpa_offer_list_by_brand_id_and_part_number() {
-        when(jpaOfferRepositoryClient.findByBrandIdPartNumber(ANY_BRAND_ID, ANY_PART_NUMBER))
-                .thenReturn(ANY_ALL_JPA_OFFERS);
+    private void mock_repository_find_jpa_offer_list_by_brand_id_and_part_number() throws SQLException {
+        when(jdbcOfferRepositoryClient.findByBrandIdPartNumber(ANY_BRAND_ID, ANY_PART_NUMBER))
+                .thenReturn(ANY_ALL_OFFERS);
     }
 
     private void mock_repository_delete_a_jpa_offer_by_id() {

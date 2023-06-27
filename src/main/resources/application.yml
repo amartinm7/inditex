@@ -18,7 +18,7 @@ spring:
   sql:
     init:
       mode: embedded
-      data-locations: classpath:db/migrations/data.sql
+      # data-locations: classpath:db/migrations/data.sql
       schema-locations: classpath:db/migrations/schema.sql
       platform: h2
 

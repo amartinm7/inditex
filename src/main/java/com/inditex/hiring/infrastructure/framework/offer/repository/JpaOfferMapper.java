@@ -15,7 +15,6 @@ import com.inditex.hiring.domain.offer.Priority;
 import com.inditex.hiring.domain.offer.PartNumber;
 import com.inditex.hiring.domain.offer.StartDate;
 
-import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,15 +22,15 @@ import static java.util.stream.Collectors.toList;
 
 public class JpaOfferMapper {
 
-    public Offer toOffer(Optional<JpaOffer> jpaOfferOptional) {
+    public Offer optionalJpaOfferToOffer(Optional<JpaOffer> jpaOfferOptional) {
 
         if (jpaOfferOptional.isEmpty()) {
             return OfferEmtpy.of();
         }
-        return toOffer(jpaOfferOptional.get());
+        return toOfferAggregate(jpaOfferOptional.get());
     }
 
-    public OfferAggregate toOffer(JpaOffer jpaOffer) {
+    public OfferAggregate toOfferAggregate(JpaOffer jpaOffer) {
         return OfferAggregate.of(
                 new OfferId(jpaOffer.getOfferId()),
                 new BrandId(jpaOffer.getBrandId()),
@@ -47,10 +46,10 @@ public class JpaOfferMapper {
         );
     }
 
-    public List<OfferAggregate> toOffer(List<JpaOffer> jpaOfferList) {
+    public List<OfferAggregate> toOfferAggregate(List<JpaOffer> jpaOfferList) {
         return jpaOfferList
                 .stream()
-                .map(jpaOffer -> toOffer(jpaOffer))
+                .map(jpaOffer -> toOfferAggregate(jpaOffer))
                 .collect(toList());
     }
 

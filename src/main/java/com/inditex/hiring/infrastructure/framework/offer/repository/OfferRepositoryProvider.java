@@ -10,26 +10,33 @@ public class OfferRepositoryProvider implements OfferRepository {
 
     private final JpaOfferRepositoryClient jpaOfferRepositoryClient;
 
+    private final JdbcOfferRepositoryClient jdbcOfferRepositoryClient;
+
     private final JpaOfferMapper jpaOfferMapper;
 
-    public OfferRepositoryProvider(JpaOfferRepositoryClient jpaOfferRepositoryClient, JpaOfferMapper jpaOfferMapper) {
+    public OfferRepositoryProvider(
+            JpaOfferRepositoryClient jpaOfferRepositoryClient,
+            JpaOfferMapper jpaOfferMapper,
+            JdbcOfferRepositoryClient jdbcOfferRepositoryClient
+    ) {
         this.jpaOfferRepositoryClient = jpaOfferRepositoryClient;
         this.jpaOfferMapper = jpaOfferMapper;
+        this.jdbcOfferRepositoryClient = jdbcOfferRepositoryClient;
     }
 
     @Override
     public Offer findById(Long offerId) {
-        return jpaOfferMapper.toOffer(jpaOfferRepositoryClient.findById(offerId));
+        return jpaOfferMapper.optionalJpaOfferToOffer(jpaOfferRepositoryClient.findById(offerId));
     }
 
     @Override
     public List<OfferAggregate> findAll() {
-        return jpaOfferMapper.toOffer(jpaOfferRepositoryClient.findAll());
+        return jpaOfferMapper.toOfferAggregate(jpaOfferRepositoryClient.findAll());
     }
 
     @Override
     public List<OfferAggregate> findByBrandIdPartNumber(Integer brandId, String partNumber) {
-        return jpaOfferMapper.toOffer(jpaOfferRepositoryClient.findByBrandIdPartNumber(brandId, partNumber));
+        return jdbcOfferRepositoryClient.findByBrandIdPartNumber(brandId, partNumber);
     }
 
     @Override

@@ -21,25 +21,25 @@ class JpaOfferMapperTest {
 
     @Test
     public void should_map_jpa_offer_to_offer() {
-        Offer response = jpaOfferMapper.toOffer(Optional.of(ANY_JPA_OFFER));
+        Offer response = jpaOfferMapper.optionalJpaOfferToOffer(Optional.of(ANY_JPA_OFFER));
         assertThat(response).isEqualTo(ANY_OFFER_AGGREGATE);
     }
 
     @Test
     public void should_map_jpa_offer_to_empty_offer() {
-        Offer response = jpaOfferMapper.toOffer(Optional.empty());
+        Offer response = jpaOfferMapper.optionalJpaOfferToOffer(Optional.empty());
         assertThat(response).isEqualTo(ANY_OFFER_EMPTY);
     }
 
     @Test
     public void should_map_jpa_offer_to_offer_aggregate() {
-        OfferAggregate response = jpaOfferMapper.toOffer(ANY_JPA_OFFER);
+        OfferAggregate response = jpaOfferMapper.toOfferAggregate(ANY_JPA_OFFER);
         assertThat(response).isEqualTo(ANY_OFFER_AGGREGATE);
     }
 
     @Test
     public void should_map_a_jpa_offer_list_to_an_offer_aggregate_list() {
-        List<OfferAggregate> response = jpaOfferMapper.toOffer(ANY_ALL_JPA_OFFERS);
+        List<OfferAggregate> response = jpaOfferMapper.toOfferAggregate(ANY_ALL_JPA_OFFERS);
         assertThat(response).isEqualTo(ANY_ALL_OFFERS);
     }
 

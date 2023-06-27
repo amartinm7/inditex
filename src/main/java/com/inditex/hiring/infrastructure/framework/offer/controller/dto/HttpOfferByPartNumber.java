@@ -16,12 +16,4 @@ public record HttpOfferByPartNumber(
     public static HttpOfferByPartNumber of(String startDate, String endDate, BigDecimal price, String currencyIso) {
         return new HttpOfferByPartNumber(startDate, endDate, price, currencyIso);
     }
-
-    @Override
-    public String toString() {
-        return "HttpOfferByPartNumber{ " +
-                "From='" + startDate + '\'' +
-                " - until='" + endDate + '\'' +
-                " price=" + price + " }";
-    }
 }

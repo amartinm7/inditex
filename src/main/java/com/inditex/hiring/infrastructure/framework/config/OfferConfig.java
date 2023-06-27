@@ -9,12 +9,15 @@ import com.inditex.hiring.application.offer.retrievebypartnumber.RetrieveOfferBy
 import com.inditex.hiring.domain.offer.port.OfferRepository;
 import com.inditex.hiring.infrastructure.framework.offer.controller.mapper.HttpOfferByPartNumberMapper;
 import com.inditex.hiring.infrastructure.framework.offer.controller.mapper.HttpOfferMapper;
+import com.inditex.hiring.infrastructure.framework.offer.repository.FindOffersByIntervalsRowMapper;
+import com.inditex.hiring.infrastructure.framework.offer.repository.JdbcOfferRepositoryClient;
 import com.inditex.hiring.infrastructure.framework.offer.repository.JpaOfferMapper;
 import com.inditex.hiring.infrastructure.framework.offer.repository.JpaOfferRepositoryClient;
 import com.inditex.hiring.infrastructure.framework.offer.repository.OfferRepositoryProvider;
 import com.inditex.hiring.infrastructure.service.OffsetDateTimeHandler;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
 @Configuration
 public class OfferConfig {
@@ -74,9 +77,27 @@ public class OfferConfig {
     }
 
     @Bean
+    public FindOffersByIntervalsRowMapper findOffersByIntervalsRowMapper(
+            OffsetDateTimeHandler offsetDateTimeHandler
+    ) {
+        return new FindOffersByIntervalsRowMapper(offsetDateTimeHandler);
+    }
+
+    @Bean
+    public JdbcOfferRepositoryClient jdbcOfferRepositoryClient(
+            NamedParameterJdbcTemplate jdbcTemplate,
+            JpaOfferMapper jpaOfferMapper,
+            FindOffersByIntervalsRowMapper findOffersByIntervalsRowMapper
+    ) {
+        return new JdbcOfferRepositoryClient(jdbcTemplate, jpaOfferMapper, findOffersByIntervalsRowMapper);
+    }
+
+    @Bean
     public OfferRepository offerRepository(
             JpaOfferRepositoryClient jpaOfferRepositoryClient,
-            JpaOfferMapper jpaOfferMapper) {
-        return new OfferRepositoryProvider(jpaOfferRepositoryClient, jpaOfferMapper);
+            JpaOfferMapper jpaOfferMapper,
+            JdbcOfferRepositoryClient jdbcOfferRepositoryClient
+        ) {
+        return new OfferRepositoryProvider(jpaOfferRepositoryClient, jpaOfferMapper, jdbcOfferRepositoryClient);
     }
 }
