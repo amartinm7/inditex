@@ -14,13 +14,13 @@ class ControllerAdvice {
     @ExceptionHandler()
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ResponseEntity<ErrorHttp> handleDomainException(MissingServletRequestParameterException ex) {
-        return new ResponseEntity(ErrorHttp.of(ex), HttpStatus.BAD_REQUEST);
+        return new ResponseEntity(ErrorHttp.of(ex.getMessage()), HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler()
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public ResponseEntity<ErrorHttp> handleDomainException(OfferNotFound ex) {
-        return new ResponseEntity(ErrorHttp.of(ex), HttpStatus.NOT_FOUND);
+        return new ResponseEntity(ErrorHttp.of(ex.getMessage()), HttpStatus.NOT_FOUND);
     }
 }
 

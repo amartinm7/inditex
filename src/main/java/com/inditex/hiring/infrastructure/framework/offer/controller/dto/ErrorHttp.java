@@ -1,7 +1,7 @@
 package com.inditex.hiring.infrastructure.framework.offer.controller.dto;
 
-public record ErrorHttp (Exception exception) {
-    public static ErrorHttp of(Exception exception) {
-        return new ErrorHttp(exception);
+public record ErrorHttp (String msg) {
+    public static ErrorHttp of(String msg) {
+        return new ErrorHttp(msg);
     }
 }

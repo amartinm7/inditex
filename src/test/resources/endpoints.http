@@ -1,2 +1,2 @@
 ### GET offer by id
-GET http://localhost:8080/offer/234
+GET http://localhost:8080/offer/D234
