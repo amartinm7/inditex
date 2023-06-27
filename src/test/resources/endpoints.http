@@ -1,2 +1,22 @@
-### GET offer by id
-GET http://localhost:8080/offer/D234
+### GET offer by id, bad request
+GET http://localhost:8080/offer/1D
+
+### GET offer by id, not found if the database is empty
+GET http://localhost:8080/offer/1
+
+### GET offers
+GET http://localhost:8080/offer
+
+### GET offers filtering by brand and partnumber
+GET http://localhost:8080/brand/1/partnumber/0001002/offer
+
+### DELETE offer by id, not found if the database is empty
+DELETE http://localhost:8080/offer/1
+
+### DELETE all offers by id, not found if the database is empty
+DELETE http://localhost:8080/offer
+
+### POST offer
+POST http://localhost:8080/offer
+{
+}

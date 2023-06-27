@@ -19,15 +19,15 @@ public class FindOffersByIntervalsRowMapper implements RowMapper<JpaOffer> {
         return JpaOffer.of(
                 rs.getLong("offer_id"),
                 rs.getInt("brand_id"),
-                offsetDateTimeHandler.toOffsetDateTimeWithoutFormat(rs.getString("start_date")),
-                offsetDateTimeHandler.toOffsetDateTimeWithoutFormat(rs.getString("end_date")),
+                offsetDateTimeHandler.toOffsetDateTimeFrom(rs.getTimestamp("start_date")),
+                offsetDateTimeHandler.toOffsetDateTimeFrom(rs.getTimestamp("end_date")),
                 rs.getLong("price_list"),
                 rs.getString("partnumber"),
                 rs.getInt("priority"),
                 new BigDecimal(rs.getString("price")),
                 rs.getString("curr"),
-                offsetDateTimeHandler.toOffsetDateTimeWithoutFormat(rs.getString("created_at")),
-                offsetDateTimeHandler.toOffsetDateTimeWithoutFormat(rs.getString("modified_at"))
+                offsetDateTimeHandler.toOffsetDateTimeFrom(rs.getTimestamp("created_at")),
+                offsetDateTimeHandler.toOffsetDateTimeFrom(rs.getTimestamp("modified_at"))
         );
     }
 }

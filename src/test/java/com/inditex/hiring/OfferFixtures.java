@@ -73,6 +73,7 @@ public class OfferFixtures {
     public static BrandId BRAND_ID = new BrandId(ANY_BRAND_ID);
     public static StartDate START_DATE = new StartDate(ANY_START_DATE);
     public static EndDate END_DATE = new EndDate(ANY_END_DATE);
+    public static EndDate END_DATE_FOR_INTERVAL = new EndDate(ANY_END_DATE.minusSeconds(1));
     public static PriceListId PRICELIST = new PriceListId(ANY_PRICELIST_ID);
     public static PartNumber PRODUCT_PART_NUMBER = new PartNumber(ANY_PART_NUMBER);
     public static Priority PRIORITY = new Priority(ANY_PRIORITY);
@@ -97,7 +98,23 @@ public class OfferFixtures {
             MODIFIED_AT
     );
 
+    public static final OfferAggregate ANY_OFFER_AGGREGATE_FOR_INTERVAL = OfferAggregate.of(
+            OFFER_ID,
+            BRAND_ID,
+            START_DATE,
+            END_DATE_FOR_INTERVAL,
+            PRICELIST,
+            PRODUCT_PART_NUMBER,
+            PRIORITY,
+            PRICE,
+            CURRENCY_ISO,
+            CREATED_AT,
+            MODIFIED_AT
+    );
+
     public static final List<OfferAggregate> ANY_ALL_OFFERS = List.of(ANY_OFFER_AGGREGATE);
+
+    public static final List<OfferAggregate> ANY_ALL_OFFERS_FOR_INTERVALS = List.of(ANY_OFFER_AGGREGATE_FOR_INTERVAL);
 
     public static final OfferEmtpy ANY_OFFER_EMPTY = OfferEmtpy.of();
 

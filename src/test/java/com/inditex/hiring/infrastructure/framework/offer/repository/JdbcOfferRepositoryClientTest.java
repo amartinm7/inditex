@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.Map;
 
@@ -68,7 +69,7 @@ class JdbcOfferRepositoryClientTest {
     }
 
     private void mock_offsetDatetime_to_date() {
-        when(offsetDateTimeHandler.toOffsetDateTimeWithoutFormat(any())
-        ).thenReturn(ANY_START_DATE);
+//        when(offsetDateTimeHandler.toOffsetDateTimeFrom(any)
+//        ).thenReturn(ANY_START_DATE);
     }
 }

@@ -1,14 +1,12 @@
 package com.inditex.hiring.infrastructure.service;
 
+import java.sql.Timestamp;
 import java.time.OffsetDateTime;
+import java.time.OffsetTime;
 import java.time.ZoneId;
-import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
-import java.util.Arrays;
-import java.util.Date;
 import java.util.TimeZone;
-import java.util.stream.Collectors;
 
 public class OffsetDateTimeHandler {
 
@@ -27,14 +25,8 @@ public class OffsetDateTimeHandler {
         return OffsetDateTime.parse(sdate).truncatedTo(ChronoUnit.SECONDS);
     }
 
-    public OffsetDateTime toOffsetDateTimeWithoutFormat(String sdate) {
-        String formatedDate = Arrays.stream(sdate.split(" ")).collect(Collectors.joining("T"));
-        dtf.withZone(ZoneId.of("UTC"));
-        return OffsetDateTime.parse(formatedDate).truncatedTo(ChronoUnit.SECONDS);
-    }
-
-    public OffsetDateTime from(Date date) {
-        return date.toInstant().atOffset(ZoneOffset.UTC);
+    public OffsetDateTime toOffsetDateTimeFrom(Timestamp timestamp) {
+        return OffsetDateTime.ofInstant(timestamp.toInstant(), ZoneId.of("UTC")).truncatedTo(ChronoUnit.SECONDS);
     }
 
     public String toStringUTC(OffsetDateTime anyDate) {
