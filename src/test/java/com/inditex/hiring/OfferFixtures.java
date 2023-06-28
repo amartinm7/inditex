@@ -15,10 +15,10 @@ import com.inditex.hiring.domain.offer.ModifiedAt;
 import com.inditex.hiring.domain.offer.OfferAggregate;
 import com.inditex.hiring.domain.offer.OfferEmtpy;
 import com.inditex.hiring.domain.offer.OfferId;
+import com.inditex.hiring.domain.offer.PartNumber;
 import com.inditex.hiring.domain.offer.Price;
 import com.inditex.hiring.domain.offer.PriceListId;
 import com.inditex.hiring.domain.offer.Priority;
-import com.inditex.hiring.domain.offer.PartNumber;
 import com.inditex.hiring.domain.offer.StartDate;
 import com.inditex.hiring.infrastructure.framework.offer.controller.dto.HttpOffer;
 import com.inditex.hiring.infrastructure.framework.offer.controller.dto.HttpOfferByPartNumber;
@@ -51,20 +51,20 @@ public class OfferFixtures {
 
     public static Integer ANY_PRIORITY = 0;
 
-    public static BigDecimal ANY_PRICE = new BigDecimal(35.50);
+    public static BigDecimal ANY_PRICE = new BigDecimal("35.5");
 
     public static String ANY_CURRENCY_ISO = "EUR";
 
     public static final HttpOffer ANY_HTTP_OFFER = HttpOffer.of(
-            ANY_OFFER_ID,
-            ANY_BRAND_ID,
-            ANY_START_DATE_STR,
-            ANY_END_DATE_STR,
-            ANY_PRICELIST_ID,
-            ANY_PART_NUMBER,
-            ANY_PRIORITY,
-            ANY_PRICE,
-            ANY_CURRENCY_ISO
+        ANY_OFFER_ID,
+        ANY_BRAND_ID,
+        ANY_START_DATE_STR,
+        ANY_END_DATE_STR,
+        ANY_PRICELIST_ID,
+        ANY_PART_NUMBER,
+        ANY_PRIORITY,
+        ANY_PRICE,
+        ANY_CURRENCY_ISO
     );
 
     public static final List<HttpOffer> ANY_ALL_HTTP_OFFERS = List.of(ANY_HTTP_OFFER);
@@ -85,31 +85,31 @@ public class OfferFixtures {
     public static ModifiedAt MODIFIED_AT = new ModifiedAt(ANY_START_DATE);
 
     public static final OfferAggregate ANY_OFFER_AGGREGATE = OfferAggregate.of(
-            OFFER_ID,
-            BRAND_ID,
-            START_DATE,
-            END_DATE,
-            PRICELIST,
-            PRODUCT_PART_NUMBER,
-            PRIORITY,
-            PRICE,
-            CURRENCY_ISO,
-            CREATED_AT,
-            MODIFIED_AT
+        OFFER_ID,
+        BRAND_ID,
+        START_DATE,
+        END_DATE,
+        PRICELIST,
+        PRODUCT_PART_NUMBER,
+        PRIORITY,
+        PRICE,
+        CURRENCY_ISO,
+        CREATED_AT,
+        MODIFIED_AT
     );
 
     public static final OfferAggregate ANY_OFFER_AGGREGATE_FOR_INTERVAL = OfferAggregate.of(
-            OFFER_ID,
-            BRAND_ID,
-            START_DATE,
-            END_DATE_FOR_INTERVAL,
-            PRICELIST,
-            PRODUCT_PART_NUMBER,
-            PRIORITY,
-            PRICE,
-            CURRENCY_ISO,
-            CREATED_AT,
-            MODIFIED_AT
+        OFFER_ID,
+        BRAND_ID,
+        START_DATE,
+        END_DATE_FOR_INTERVAL,
+        PRICELIST,
+        PRODUCT_PART_NUMBER,
+        PRIORITY,
+        PRICE,
+        CURRENCY_ISO,
+        CREATED_AT,
+        MODIFIED_AT
     );
 
     public static final List<OfferAggregate> ANY_ALL_OFFERS = List.of(ANY_OFFER_AGGREGATE);
@@ -127,32 +127,32 @@ public class OfferFixtures {
     public static final RetrieveAllOffersServiceResponse ANY_RETRIEVE_ALL_OFFERS_RESPONSE = new RetrieveAllOffersServiceResponse(ANY_ALL_OFFERS);
 
     public static final JpaOffer ANY_JPA_OFFER = JpaOffer.of(
-            ANY_OFFER_ID,
-            ANY_BRAND_ID,
-            ANY_START_DATE,
-            ANY_END_DATE,
-            ANY_PRICELIST_ID,
-            ANY_PART_NUMBER,
-            ANY_PRIORITY,
-            ANY_PRICE,
-            ANY_CURRENCY_ISO,
-            ANY_START_DATE,
-            ANY_START_DATE
+        ANY_OFFER_ID,
+        ANY_BRAND_ID,
+        ANY_START_DATE,
+        ANY_END_DATE,
+        ANY_PRICELIST_ID,
+        ANY_PART_NUMBER,
+        ANY_PRIORITY,
+        ANY_PRICE,
+        ANY_CURRENCY_ISO,
+        ANY_START_DATE,
+        ANY_START_DATE
     );
     public static final List<JpaOffer> ANY_ALL_JPA_OFFERS = List.of(ANY_JPA_OFFER);
     public static final HttpOfferByPartNumber ANY_OFFER_BY_PART_NUMBER =
-            HttpOfferByPartNumber.of(ANY_START_DATE_STR, ANY_END_DATE_STR, ANY_PRICE, ANY_CURRENCY_ISO);
+        HttpOfferByPartNumber.of(ANY_START_DATE_STR, ANY_END_DATE_STR, ANY_PRICE, ANY_CURRENCY_ISO);
     public static final List<HttpOfferByPartNumber> ANY_HTTP_OFFER_BY_PART_NUMBER_LIST = List.of(ANY_OFFER_BY_PART_NUMBER);
 
     public static final RetrieveOfferByPartNumberServiceRequest ANY_RETRIEVE_OFFER_BY_PART_NUMB_REQUEST =
-            new RetrieveOfferByPartNumberServiceRequest(ANY_BRAND_ID, ANY_PART_NUMBER);
+        new RetrieveOfferByPartNumberServiceRequest(ANY_BRAND_ID, ANY_PART_NUMBER);
 
     public static final RetrieveOfferByPartNumberServiceResponse ANY_RETRIEVE_OFFER_BY_PART_NUMB_RESPONSE =
-            new RetrieveOfferByPartNumberServiceResponse(ANY_ALL_OFFERS);
+        new RetrieveOfferByPartNumberServiceResponse(ANY_ALL_OFFERS);
 
     public static final DeleteOfferServiceRequest ANY_DELETE_OFFER_BY_ID_REQUEST =
-            new DeleteOfferServiceRequest(ANY_OFFER_ID);
+        new DeleteOfferServiceRequest(ANY_OFFER_ID);
 
     public static final CreateOfferServiceRequest ANY_CREATE_OFFER_REQUEST =
-            new CreateOfferServiceRequest(ANY_OFFER_AGGREGATE);
+        new CreateOfferServiceRequest(ANY_OFFER_AGGREGATE);
 }

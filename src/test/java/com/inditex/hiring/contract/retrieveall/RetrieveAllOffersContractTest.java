@@ -17,9 +17,7 @@ import java.util.stream.Stream;
 
 import static com.inditex.hiring.OfferFixtures.ANY_ALL_HTTP_OFFERS;
 import static com.inditex.hiring.OfferFixtures.ANY_ALL_OFFERS;
-import static com.inditex.hiring.OfferFixtures.ANY_DELETE_OFFER_BY_ID_REQUEST;
 import static com.inditex.hiring.OfferFixtures.ANY_RETRIEVE_ALL_OFFERS_RESPONSE;
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
